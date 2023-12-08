@@ -1,0 +1,54 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+# allowed terms: 
+# variable: pr
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05
+# domain: sadc sey com mau
+# basetime: mon seas year pent dek
+# index: PRCPTOT Rx1day Rx5day
+# anomtype: relative, absolute, quantile
+# ovwerwrite: 0,1
+#
+# not all combinations of dataset and domain are possible, as not all datasets cover all domains, and not all datasets have appropriate resolution for small domains
+# sadc: all
+# sey,com,mau: CHIRPS-v2.0-p05
+# 
+# not all combinations of basetime and index make sense. Suggested are:
+# year: all
+# seas: all
+# mon: all
+# dek: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII 
+# pent: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII
+
+
+ERA5,reanalysis,sadc,mon,TN,index,1991,2020,0
+ERA5,reanalysis,sadc,mon,TN,absanom,1991,2020,0
+ERA5,reanalysis,sadc,mon,TNn,index,1991,2020,0
+ERA5,reanalysis,sadc,mon,TX,index,1991,2020,0
+ERA5,reanalysis,sadc,mon,TX,absanom,1991,2020,0
+ERA5,reanalysis,sadc,mon,TXx,index,1991,2020,0
+ERA5,reanalysis,sadc,mon,hwTN95,index,1991,2020,0
+ERA5,reanalysis,sadc,mon,hwTX95,index,1991,2020,0
+
+ERA5,reanalysis,sadc,dek,TN,index,1991,2020,0
+ERA5,reanalysis,sadc,dek,TN,absanom,1991,2020,0
+ERA5,reanalysis,sadc,dek,TNn,index,1991,2020,0
+ERA5,reanalysis,sadc,dek,TX,index,1991,2020,0
+ERA5,reanalysis,sadc,dek,TX,absanom,1991,2020,0
+ERA5,reanalysis,sadc,dek,TXx,index,1991,2020,0
+ERA5,reanalysis,sadc,dek,hwTN95,index,1991,2020,0
+ERA5,reanalysis,sadc,dek,hwTX95,index,1991,2020,0
+
+ERA5,reanalysis,sadc,pent,TN,index,1991,2020,0
+ERA5,reanalysis,sadc,pent,TN,absanom,1991,2020,0
+ERA5,reanalysis,sadc,pent,TNn,index,1991,2020,0
+ERA5,reanalysis,sadc,pent,TX,index,1991,2020,0
+ERA5,reanalysis,sadc,pent,TX,absanom,1991,2020,0
+ERA5,reanalysis,sadc,pent,TXx,index,1991,2020,0
+ERA5,reanalysis,sadc,pent,hwTN95,index,1991,2020,0
+ERA5,reanalysis,sadc,pent,hwTX95,index,1991,2020,0
+

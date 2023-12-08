@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# This bash script checks if a bash script (argument) is running,
+# and runs it if it not already running. If script is already running and is older than 3 hours 
+# then the running process will be killed and a new one will be started.
+#
+#
+logpath=/home/station/csis/logs/
+script="${@}"
+scriptname=$(echo "$script" | awk '{print $1}')
+scriptname=${scriptname##*/}
+logfile=${logpath}/${scriptname%.*}.log
+prefix="$(date +"%Y-%m-%d") $(date +"%H:%M:%S"): "
+startit=1
+mkdir -p $logpath
+
+[[ -z ${1} ]] && exit
+if [[ -z `ps aux | grep "/bin/bash ${1}" | grep -v grep` ]] && [[ -z `ps aux | grep "/bin/sh ${1}" | grep -v grep` ]]; then
+   printf '%s\n' "$(${script} 2>&1)" | sed "s/^/${prefix}/g" >> "${logfile}"
+else
+   pids=($(ps aux | grep "/bin/bash ${1}" | grep -v grep | awk '{print $2}') $(ps aux | grep "/bin/sh ${1}" | grep -v grep | awk '{print $2}'))
+   for pid in ${pids[@]}; do
+     pid_time=$(ps -p "${pid}" -o etime=)
+     if [[ -n $(echo ${pid_time%%:*} | grep -) ]]; then
+        echo "pid $pid is older than one day, will kill the process"
+        kill -9 $pid
+     else
+        pid_hour=$(echo "${pid_time%%:*}" | bc)
+        if [[ $pid_hour -ge 6 ]]; then
+           echo "pid $pid is at least 6 hours old, $pid_hour hours, , will kill the process!"
+           kill -9 $pid
+        else
+           echo "pid $pid is less than 6 hours old, $pid_hour hours. will not start new process"
+           startit=0
+        fi
+     fi
+   done  
+   if [[ $startit -eq 1 ]]; then
+        printf '%s\n' "$(${script} 2>&1)" | sed "s/^/${prefix}/g" >> "${logfile}"
+   fi
+fi
+

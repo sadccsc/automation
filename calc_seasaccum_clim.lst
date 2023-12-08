@@ -1,0 +1,18 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,clim,1991,2020,0,1
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,clim,1991,2020,0,1
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,clim,1991,2020,0,1
+
+#ARC2,observed,sadc,pr,mon,seasaccum,clim,1991,2020,0,0
+#ARC2,observed,sadc,pr,dek,seasaccum,clim,1991,2020,0,0
+#ARC2,observed,sadc,pr,pent,seasaccum,clim,1991,2020,0,0
+
+#TAMSAT-v3.1,observed,sadc,pr,mon,seasaccum,clim,1991,2020,0,0
+#TAMSAT-v3.1,observed,sadc,pr,dek,seasaccum,clim,1991,2020,0,0
+#TAMSAT-v3.1,observed,sadc,pr,pent,seasaccum,clim,1991,2020,0,0
