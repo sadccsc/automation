@@ -33,7 +33,7 @@ year=str(currentdate.year)
 
 
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","SON","OND","NDJ","DJF"]
+seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","ASO","SON","OND","NDJ","DJF"]
 
 varnames={
     "TNn":"lowest minimum daily temperature",
@@ -96,7 +96,7 @@ datasetnames={
     "ERA5": "ERA5",
     "TAMSAT-v3.1": "TAMSAT v3.1",
     "ARC2": "ARC2",
-    "CHIRPS-v2.0-p05-merged": "CHIRPS_v2.0"
+    "CHIRPS-v2.0-p05-merged": "CHIRPS v2.0"
 }
 
 domainoverlays={
@@ -123,7 +123,7 @@ heatwavedefs={
 
 accumdefs={
         "seasaccum":{"summer":"Accumulation since the 1st of July"},
-        "onset":{"summer": "Calculted after the 1st of September"}
+        "onset":{"summer": "Calculated after the 1st of September"}
     }
 
 #this is a temporary solution. ultimately, one would need to build the regime into lst file and onset and seasaccum calculation scripts
@@ -180,6 +180,7 @@ else:
     #this is for anomalies
     if basetime=="seas":
         datafile="{}/{}{}_{}_{}_{}_{}{}_{}-{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain, year,str(month).zfill(2),climstartyear,climendyear)
+        datafiles.append([day,datafile])
     elif basetime=="mon":
         datafile="{}/{}{}_{}_{}_{}_{}{}_{}-{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain, year,str(month).zfill(2),climstartyear,climendyear)
         datafiles.append([day,datafile])
@@ -216,6 +217,7 @@ if not os.path.exists(logofile):
     sys.exit()
 
 
+print(datafiles)
 
 
 for day,datafile in datafiles:
@@ -230,7 +232,11 @@ for day,datafile in datafiles:
         else:
             mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc",".png"))
         print("output map file:",mapfile)
-        
+        elems=mapfile.split("_")
+        mapfile="_".join(["-".join(elems[0:3]),"_".join(elems[3:])])
+        print("output map file:",mapfile)
+        #sys.exit()
+
         if os.path.exists(mapfile) and overwrite==False:
             print("map file {} exists and overwrite is off. skipping.".format(mapfile))
         else:
@@ -279,7 +285,7 @@ for day,datafile in datafiles:
 
             attrname=attrnames[attr]
             varname=varnames[var]
-            timeexpr=get_timeexpr(year,monthval,day,basetime,climstartyear,climendyear,attr)
+            timeexpr=get_timeexpr(year,monthval,day,basetime,climstartyear,climendyear,attr,var,varcat)
             title="{} {} \n{}".format(attrname, varname, timeexpr)
             mask=None
             plotbackground=False

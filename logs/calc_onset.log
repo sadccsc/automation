@@ -1,0 +1,642 @@
+2023-12-09 09:40:01: ***********************************************************************************************************************
+2023-12-09 09:40:01: reading /home/station/csis/calc_onset.lst
+2023-12-09 09:40:01: read 6 entries
+2023-12-09 09:40:01: startdate: 20231109
+2023-12-09 09:40:01: enddate: 20231209
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime mon
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute index
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 mon onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 mon onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202311.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202311.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 mon onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 mon onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: date range: 2022-01-01 00:00:00 2023-12-31 00:00:00
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-09 09:40:01: too few. need 730. exiting...
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime mon
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute absanom
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 mon onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 mon onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD-absanom_mon_CHIRPS-v2.0-p05-merged_sadc_202311_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 mon onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 mon onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime dek
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute index
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 dek onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 dek onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231101.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231101.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231111.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231111.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231121.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231121.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 dek onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 dek onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231210*.nc
+2023-12-09 09:40:01: too few. need 709. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231220*.nc
+2023-12-09 09:40:01: too few. need 719. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-09 09:40:01: too few. need 730. exiting...
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime dek
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute absanom
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 dek onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 dek onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231101_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231111_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231121_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 dek onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 dek onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime pent
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute index
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 pent onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 pent onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231101.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231101.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231106.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231106.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231111.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231111.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231116.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231116.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231121.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231121.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231126.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231126.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 pent onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 pent onsetD index 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231201.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231206.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231210*.nc
+2023-12-09 09:40:01: too few. need 709. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231215*.nc
+2023-12-09 09:40:01: too few. need 714. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231216.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231220*.nc
+2023-12-09 09:40:01: too few. need 719. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231225*.nc
+2023-12-09 09:40:01: too few. need 724. exiting...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231226.nc
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-09 09:40:01: too few. need 730. exiting...
+2023-12-09 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-09 09:40:01: datatype observed
+2023-12-09 09:40:01: domain sadc
+2023-12-09 09:40:01: var pr
+2023-12-09 09:40:01: basetime pent
+2023-12-09 09:40:01: index onsetD
+2023-12-09 09:40:01: attribute absanom
+2023-12-09 09:40:01: 1991
+2023-12-09 09:40:01: 2020
+2023-12-09 09:40:01: fracmissing 0
+2023-12-09 09:40:01: overwrite 0
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: start date: 20231109
+2023-12-09 09:40:01: end date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231109
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231109 pent onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231109 pent onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231101_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231106_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231111_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231116_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231121_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231126_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: ************************************************************
+2023-12-09 09:40:01: current date: 20231209
+2023-12-09 09:40:01: 
+2023-12-09 09:40:01: *********************************
+2023-12-09 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231209 pent onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231209 pent onsetD absanom 1991 2020 0 0
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231201_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231206.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231216.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-09 09:40:01: outputfile does not exist. processing...
+2023-12-09 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231226.nc
+2023-12-09 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: ***********************************************************************************************************************
+2023-12-10 09:40:01: reading /home/station/csis/calc_onset.lst
+2023-12-10 09:40:01: read 6 entries
+2023-12-10 09:40:01: startdate: 20231110
+2023-12-10 09:40:01: enddate: 20231210
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime mon
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute index
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 mon onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 mon onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202311.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202311.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 mon onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 mon onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: date range: 2022-01-01 00:00:00 2023-12-31 00:00:00
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-10 09:40:01: too few. need 730. exiting...
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime mon
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute absanom
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 mon onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 mon onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD-absanom_mon_CHIRPS-v2.0-p05-merged_sadc_202311_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 mon onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 mon onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime dek
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute index
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 dek onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 dek onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231101.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231101.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231111.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231111.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231121.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231121.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 dek onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 dek onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231210*.nc
+2023-12-10 09:40:01: too few. need 709. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231220*.nc
+2023-12-10 09:40:01: too few. need 719. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-10 09:40:01: too few. need 730. exiting...
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime dek
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute absanom
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 dek onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 dek onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231101_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231111_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD-absanom_dek_CHIRPS-v2.0-p05-merged_sadc_20231121_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 dek onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 dek onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/dek/sadc/onsetD/onsetD_dek_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime pent
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute index
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 pent onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 pent onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231101.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231101.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231106.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231106.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231111.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231111.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231116.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231116.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231121.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231121.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231126.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231126.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 pent onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 pent onsetD index 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231201.nc
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231201.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231206.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231210*.nc
+2023-12-10 09:40:01: too few. need 709. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231215*.nc
+2023-12-10 09:40:01: too few. need 714. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231216.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231220*.nc
+2023-12-10 09:40:01: too few. need 719. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231225*.nc
+2023-12-10 09:40:01: too few. need 724. exiting...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231226.nc
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: found 704 files in /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr/pr_*_20231231*.nc
+2023-12-10 09:40:01: too few. need 730. exiting...
+2023-12-10 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-10 09:40:01: datatype observed
+2023-12-10 09:40:01: domain sadc
+2023-12-10 09:40:01: var pr
+2023-12-10 09:40:01: basetime pent
+2023-12-10 09:40:01: index onsetD
+2023-12-10 09:40:01: attribute absanom
+2023-12-10 09:40:01: 1991
+2023-12-10 09:40:01: 2020
+2023-12-10 09:40:01: fracmissing 0
+2023-12-10 09:40:01: overwrite 0
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: start date: 20231110
+2023-12-10 09:40:01: end date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231110
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231110 pent onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231110 pent onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231101_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231106_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231111_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231116_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231121_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231126_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: ************************************************************
+2023-12-10 09:40:01: current date: 20231210
+2023-12-10 09:40:01: 
+2023-12-10 09:40:01: *********************************
+2023-12-10 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231210 pent onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231210 pent onsetD absanom 1991 2020 0 0
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD-absanom_pent_CHIRPS-v2.0-p05-merged_sadc_20231201_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231206.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231211.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231216.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231221.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-10 09:40:01: outputfile does not exist. processing...
+2023-12-10 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onsetD/onsetD_pent_CHIRPS-v2.0-p05-merged_sadc_20231226.nc
+2023-12-10 09:40:01:  does not not exist. skipping...
+2023-12-11 09:40:01: ***********************************************************************************************************************
+2023-12-11 09:40:01: reading /home/station/csis/calc_onset.lst
+2023-12-11 09:40:01: read 1 entries
+2023-12-11 09:40:01: startdate: 20231111
+2023-12-11 09:40:01: enddate: 20231211
+2023-12-11 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-11 09:40:01: datatype observed
+2023-12-11 09:40:01: domain sadc
+2023-12-11 09:40:01: var pr
+2023-12-11 09:40:01: basetime mon
+2023-12-11 09:40:01: index onsetD
+2023-12-11 09:40:01: attribute absanom
+2023-12-11 09:40:01: 1991
+2023-12-11 09:40:01: 2020
+2023-12-11 09:40:01: fracmissing 0
+2023-12-11 09:40:01: overwrite 0
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: start date: 20231111
+2023-12-11 09:40:01: end date: 20231211
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: ************************************************************
+2023-12-11 09:40:01: current date: 20231111
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: *********************************
+2023-12-11 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231111 mon onsetD absanom 1991 2020 0 0
+2023-12-11 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231111 mon onsetD absanom 1991 2020 0 0
+2023-12-11 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD-absanom_mon_CHIRPS-v2.0-p05-merged_sadc_202311_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: ************************************************************
+2023-12-11 09:40:01: current date: 20231211
+2023-12-11 09:40:01: 
+2023-12-11 09:40:01: *********************************
+2023-12-11 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231211 mon onsetD absanom 1991 2020 0 0
+2023-12-11 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231211 mon onsetD absanom 1991 2020 0 0
+2023-12-11 09:40:01: outputfile does not exist. processing...
+2023-12-11 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-11 09:40:01:  does not not exist. skipping...
+2023-12-12 09:40:01: ***********************************************************************************************************************
+2023-12-12 09:40:01: reading /home/station/csis/calc_onset.lst
+2023-12-12 09:40:01: read 1 entries
+2023-12-12 09:40:01: startdate: 20231112
+2023-12-12 09:40:01: enddate: 20231212
+2023-12-12 09:40:01: dataset CHIRPS-v2.0-p05-merged
+2023-12-12 09:40:01: datatype observed
+2023-12-12 09:40:01: domain sadc
+2023-12-12 09:40:01: var pr
+2023-12-12 09:40:01: basetime mon
+2023-12-12 09:40:01: index onsetD
+2023-12-12 09:40:01: attribute absanom
+2023-12-12 09:40:01: 1991
+2023-12-12 09:40:01: 2020
+2023-12-12 09:40:01: fracmissing 0
+2023-12-12 09:40:01: overwrite 0
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: start date: 20231112
+2023-12-12 09:40:01: end date: 20231212
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: ************************************************************
+2023-12-12 09:40:01: current date: 20231112
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: *********************************
+2023-12-12 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231112 mon onsetD absanom 1991 2020 0 0
+2023-12-12 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231112 mon onsetD absanom 1991 2020 0 0
+2023-12-12 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD-absanom_mon_CHIRPS-v2.0-p05-merged_sadc_202311_1991-2020.nc exists, and overwrite is off. skipping...
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: ************************************************************
+2023-12-12 09:40:01: current date: 20231212
+2023-12-12 09:40:01: 
+2023-12-12 09:40:01: *********************************
+2023-12-12 09:40:01: calling calc_onset.py with CHIRPS-v2.0-p05-merged sadc pr 20231212 mon onsetD absanom 1991 2020 0 0
+2023-12-12 09:40:01: python /home/station/csis/calc_onset.py /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/day/sadc/pr /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD CHIRPS-v2.0-p05-merged sadc pr 20231212 mon onsetD absanom 1991 2020 0 0
+2023-12-12 09:40:01: outputfile does not exist. processing...
+2023-12-12 09:40:01: /storageserver/RCC//data/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onsetD/onsetD_mon_CHIRPS-v2.0-p05-merged_sadc_202312.nc
+2023-12-12 09:40:01:  does not not exist. skipping...

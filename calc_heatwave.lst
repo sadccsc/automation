@@ -1,0 +1,29 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+
+#commands below are operational monitoring, will be run daily
+
+ERA5,reanalysis,sadc,tasmax,seas,hwTX95,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,seas,hwTN95,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmax,mon,hwTX95,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,mon,hwTN95,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmax,dek,hwTX95,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,dek,hwTN95,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmax,pent,hwTX95,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,pent,hwTN95,index,1991,2020,0,0
+
+#this one calculates daily climatology of TX95 over the climatological period. 
+#these calculations are different than the standard ETCCDI index in that the percentile is calculated
+# for data from 15-day window centered on a particular day of year
+# this command has to be run only once, ie. it does not have to be run in the monitoring setting
+# it has to be re-run, though, if one changes the climatological period
+#ERA5,reanalysis,sadc,tasmax,day,TX95,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmin,day,TN95,clim,1991,2020,0,0
+

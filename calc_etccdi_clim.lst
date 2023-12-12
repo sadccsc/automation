@@ -1,0 +1,48 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+# allowed terms: 
+# variable: pr
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05
+# domain: sadc sey com mau
+# basetime: mon seas year pent dek
+# index: PRCPTOT Rx1day Rx5day
+# anomtype: relative, absolute, quantile
+# ovwerwrite: 0,1
+#
+# not all combinations of dataset and domain are possible, as not all datasets cover all domains, and not all datasets have appropriate resolution for small domains
+# sadc: all
+# sey,com,mau: CHIRPS-v2.0-p05
+# 
+# not all combinations of basetime and index make sense. Suggested are:
+# year: all
+# seas: all
+# mon: all
+# dek: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII 
+# pent: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII
+
+ERA5,reanalysis,sadc,tasmin,seas,TN,clim,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TX,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmin,mon,TN,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmax,mon,TX,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmin,dek,TN,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmax,dek,TX,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmin,pent,TN,clim,1991,2020,0,0
+#ERA5,reanalysis,sadc,tasmax,pent,TX,clim,1991,2020,0,0
+
+#CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,PRCPTOT,clim,1991,2020,0.2,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,PRCPTOT,clim,1991,2020,0.2,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,PRCPTOT,clim,1991,2020,0.2,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,PRCPTOT,clim,1991,2020,0.2,0
+#ARC2,observed,sadc,pr,seas,PRCPTOT,clim,1991,2020,0.2,0
+#ARC2,observed,sadc,pr,mon,PRCPTOT,clim,1991,2020,0.2,0
+#ARC2,observed,sadc,pr,dek,PRCPTOT,clim,1991,2020,0.2,0
+#ARC2,observed,sadc,pr,pent,PRCPTOT,clim,1991,2020,0.2,0
+#TAMSAT-v3.1,observed,sadc,pr,seas,PRCPTOT,clim,1991,2020,0.2,0
+#TAMSAT-v3.1,observed,sadc,pr,mon,PRCPTOT,clim,1991,2020,0.2,0
+#TAMSAT-v3.1,observed,sadc,pr,dek,PRCPTOT,clim,1991,2020,0.2,0
+#TAMSAT-v3.1,observed,sadc,pr,pent,PRCPTOT,clim,1991,2020,0.2,0
+

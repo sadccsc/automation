@@ -18,6 +18,8 @@
 # sey,com,mau: CHIRPS-v2.0-p05
 # 
 
+CHIRPS-v2.0-p05-merged,observed,sadc,mon,onsetD,index,1991,2020,0
+CHIRPS-v2.0-p05-merged,observed,sadc,mon,onsetD,absanom,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,PRCPTOT,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,PRCPTOT,percnormanom,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,Rx1day,index,1991,2020,0
@@ -32,8 +34,6 @@ CHIRPS-v2.0-p05-merged,observed,sadc,mon,spi1,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,spi3,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,spi12,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,spi36,index,1991,2020,0
-CHIRPS-v2.0-p05-merged,observed,sadc,mon,onsetD,index,1991,2020,0
-CHIRPS-v2.0-p05-merged,observed,sadc,mon,onsetD,absanom,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,mon,seasaccum,index,1991,2020,0
 
 CHIRPS-v2.0-p05-merged,observed,sadc,dek,PRCPTOT,index,1991,2020,0

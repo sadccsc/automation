@@ -90,34 +90,44 @@ def plot_map(_data,_cmap,_levels,_vmin,_vmax, _title, _annotation,_cbar_label,_t
 #    plt.show()
 
 
-def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr):
+def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
+
     if attr=="clim":
         year=""
         
     if basetime=="seas":
-        if month>11:
+        if month==12:
             yearexpr="{}-{}".format(year,int(year)+1)
+            year=year+1
+            lastmonth=2
         else:
             yearexpr=str(year)
+            lastmonth=month+2
         timeexpr="{} {}".format(seasons[month-1],yearexpr)
-        
+        lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        month=lastmonth
+
     if basetime=="mon":
         timeexpr="{} {}".format(months[month-1],year)
-        
+        lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+
     if basetime=="dek":
         if day==21:
             lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         else:
             lastday=int(day)+9
         timeexpr="{} to {} {} {}".format(day,lastday,months[month-1],year)
-        
+
     if basetime=="pent":
         if day==26:
             lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         else:
             lastday=int(day)+4
         timeexpr="{} to {} {} {}".format(day,lastday,months[month-1],year)
-        
+
+    if varcat=="onset":
+        timeexpr="by {} {} {}".format(lastday,months[month-1],year)
+
     return timeexpr
 
 
