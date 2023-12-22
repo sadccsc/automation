@@ -13,8 +13,6 @@
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
-#this activates python environment
-source /home/sadc/csc/bin/activate
 
 
 #harmonizing individual datasets

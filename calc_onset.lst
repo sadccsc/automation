@@ -6,12 +6,12 @@
 #
 
 # chirps should be overwriting because of transition from prelim to stable
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,onsetD,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,onsetD,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,onsetD,absanom,1991,2020,0,0
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,onsetD,index,1991,2020,0,0
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,onsetD,absanom,1991,2020,0,0
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,onsetD,index,1991,2020,0,0
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,onsetD,absanom,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,onsetD,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,onsetD,absanom,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,onsetD,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,onsetD,absanom,1991,2020,0,0
 
 # these are not calculated - need to sort out what to do with missing days
 #ARC2,observed,sadc,pr,mon,onsetD,index,1991,2020,0,0

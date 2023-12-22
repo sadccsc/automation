@@ -91,6 +91,7 @@ else:
     #shifting time by hour ahead
     newtime=pd.to_datetime(da.time.data)-pd.offsets.Hour(1)
     da["time"]=newtime
+    print(da)
     tasmin=da.resample(time="D").min().sel(time=slice(datestr,datestr))
     tasmax=da.resample(time="D").max().sel(time=slice(datestr,datestr))
     alldata=[tasmin,tasmax]

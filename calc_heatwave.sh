@@ -14,8 +14,6 @@ source $scriptdir/csisEnv
 
 lstfile=$scriptdir/calc_heatwave.lst
 
-source /home/sadc/csc/bin/activate
-
 #reading members list (i.e. list of models to be processed. These are stored in members.txt file
 echo reading $lstfile
 indices=()
@@ -100,7 +98,7 @@ for item in ${indices[@]}; do
 
 
         echo python $scriptdir/calc_heatwave.py $indir $indexdir $args
-        python $scriptdir/calc_heatwave.py $indir $indexdir $args
+        python3 $scriptdir/calc_heatwave.py $indir $indexdir $args
         cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     done
     #exit

@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-# script to call python script that pre-processes ARC data
+# script to call python script that pre-processes CHIRPS data
 #
 # P.Wolski
-# March 2023
+# June 2023
 #
 
 #some housekeeping
@@ -11,14 +11,13 @@ ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
 
-
 var=pr
 #defining directories
 #rootdir defined in csisEnv
 #directory with incoming data, this should not change even in root dir changes
-indir=$rootdir/incoming/ARC2/africa/day
+indir=$rootdir/incoming/CHIRPS-v2.0-p05/global/day
 #directory where processed data will be stored. this should not change even if root dir changes
-outdir=$rootdir/data/observed/ARC2/day
+outdir=$rootdir/data/observed/CHIRPS-v2.0-p05/day
 
 #if script receives two arguments - set end date
 if [ $# == 2 ]; then
@@ -31,9 +30,8 @@ fi
 if [ $# -ge 1 ]; then
     startdate=$1
 else
-    startdate=$(date +"%Y%m%d" -d "$enddate - 30 days")
+    startdate=$(date +"%Y%m%d" -d "$enddate - 60 days")
 fi
-
 
 #current date, i.e. date being processed
 cdate=$startdate
@@ -47,22 +45,22 @@ while [ "$cdate" -le $enddate ]; do
     echo processing $cdate
 
     #source file
-    infile=africa_arc.${year}${month}${day}.tif
+    infile=chirps-v2.0.${year}.${month}.${day}.tif
 
     #checking if source file exists
     if [ -f $indir/${infile} ]; then
         echo found input file $indir/${infile}
-        #if exists - iterating through domains. ARC data extend till 55E, so no Mauritius and no Seychelles
-        #processing sadc only
+        #if exists - iterating through domains
+        #chirps global covers seychelles, but does not generate data for them. so only three domains
         for domain in test; do
-            echo processing domain: $domain
-            #just in case directory does not exist
-            if [ ! -e $outdir/$domain ]; then
-                mkdir -p $outdir/$domain
-            fi
 
+            #just in case directory does not exist
+            if [ ! -e $outdir/$domaini/$var ]; then
+                mkdir -p $outdir/$domain/$var
+            fi
+            echo processing domain: $domain
             #outfile name
-            outfile=pr_day_ARC2_${domain}_${year}${month}${day}.nc
+            outfile=pr_day_CHIRPS-v2.0-p05_${domain}_${year}${month}${day}.nc
 
             #checking if outfile exists
             if [ -f $outdir/$domain/$var/$outfile ]; then
@@ -71,7 +69,7 @@ while [ "$cdate" -le $enddate ]; do
                 #processing if does not exist
                 echo output file $outdir/$domain/$var/$outfile does not exist. processing...
 
-                cmd="python3 $scriptdir/harmonize_arc.py $indir/$infile $outdir/$domain/$var/$outfile $cdate $domain"
+                cmd="python3 $scriptdir/harmonize_chirps.py $indir/$infile $outdir/$domain/$var/$outfile $cdate $domain"
                 echo executing: 
                 echo $cmd
                 $cmd

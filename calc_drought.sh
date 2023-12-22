@@ -14,8 +14,6 @@ ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 
 source $scriptdir/csisEnv
-#this activates python environment
-source /home/sadc/csc/bin/activate
 
 #if script receives two arguments - set end date
 if [ $# -ge 2 ]; then
@@ -98,7 +96,7 @@ while [ "$cdate" -le $enddate ]; do
 
 
         echo python $scriptdir/calc_drought.py $indir $outdir $args
-        python $scriptdir/calc_drought.py $indir $outdir $args
+        python3 $scriptdir/calc_drought.py $indir $outdir $args
     done
     cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     #exit

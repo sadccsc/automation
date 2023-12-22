@@ -66,7 +66,7 @@ while [ "$cdate" -le  $enddate ]; do
     #this is where downloading happens
     if $dodownload; then
         echo downloading...
-        python download_era.py tas $year $month $day hour sadc $outdir/$outfile
+        python3 download_era.py tas $year $month $day hour sadc $outdir/$outfile
     fi
     cdate=$(date +"%Y%m%d" -d "$cdate + 1 day")
 done

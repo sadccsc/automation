@@ -73,7 +73,7 @@ while [ "$cdate" -le $enddate ]; do
                 #processing if does not exist
                 echo output file $outdir/$domain/$var/$outfile does not exist. processing...
 
-                cmd="python $scriptdir/harmonize_tamsat.py $indir/$infile $outdir/$domain/$var/$outfile $cdate $domain"
+                cmd="python3 $scriptdir/harmonize_tamsat.py $indir/$infile $outdir/$domain/$var/$outfile $cdate $domain"
                 echo executing: 
                 echo $cmd
                 $cmd

@@ -11,8 +11,6 @@ echo "**************************************************************************
 ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
-#this activates python environment
-source /home/sadc/csc/bin/activate
 
 #if script receives two arguments - set end date
 if [ $# -ge 2 ]; then
@@ -114,7 +112,7 @@ for item in ${indices[@]}; do
 
 
         echo python $scriptdir/calc_etccdi.py $indir $climdir $anomdir $indexdir $args
-        python $scriptdir/calc_etccdi.py $indir $climdir $anomdir $indexdir $args
+        python3 $scriptdir/calc_etccdi.py $indir $climdir $anomdir $indexdir $args
         cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     done
     #this one steps by month, because shorter baseline indices are all calculated for all periods for which data are available in a given month

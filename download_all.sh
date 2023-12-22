@@ -11,7 +11,6 @@
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
-source /home/sadc/csc/bin/activate
 
 #downloading individual datasets
 $ABSDIR/download_arc.sh

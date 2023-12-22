@@ -11,8 +11,6 @@ echo "**************************************************************************
 ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
-#this activates python environment
-source /home/sadc/csc/bin/activate
 
 #if script receives two arguments - set end date
 if [ $# -ge 2 ]; then

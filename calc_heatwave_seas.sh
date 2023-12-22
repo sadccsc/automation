@@ -98,7 +98,7 @@ for item in ${indices[@]}; do
 
 
         echo python $scriptdir/calc_heatwave.py $indir $indexdir $args
-        python $scriptdir/calc_heatwave.py $indir $indexdir $args
+        python3 $scriptdir/calc_heatwave.py $indir $indexdir $args
         cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     done
     #exit

@@ -75,7 +75,8 @@ while [ "$cdate" -le  $enddate ]; do
 
     #this is where downloading happens
     if $dodownload; then
-        echo downloading...
+        echo downloading now...
+	echo to $outdir/$outfile
         wget --no-check-certificate $remotedir/$remotefile -O $outdir/$outfile
         wgetresponse=$?
         echo response: $wgetresponse
@@ -88,6 +89,7 @@ while [ "$cdate" -le  $enddate ]; do
             echo done. saved to: $outdir/$outfile
             echo unzipping...
             unzip -d $outdir $outdir/$outfile
+            chgrp csis $outdir/$outfile
         fi
     fi
     cdate=$(date +"%Y%m%d" -d "$cdate + 1 day")
