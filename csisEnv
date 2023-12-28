@@ -1,3 +1,4 @@
 #!/bin/bash
-
+source /home/csis/mambaforge/bin/activate base
 rootdir=/storageserver/RCC/
+

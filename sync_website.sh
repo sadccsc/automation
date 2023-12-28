@@ -1,4 +1,5 @@
 #!/bin/bash
+
 wbsgas=192.168.203.4
 
 if [ $# -ne 0 ] ; then
@@ -8,6 +9,7 @@ else
 fi
 echo $today
 
+#sync seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
@@ -30,7 +32,6 @@ rsync -avog  maps/reanalysis/ERA5/mon/sadc/hw*/*_* ftpdatapush@${wbsgas}:/var/ww
 
 
 # sync dekadal
-
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
@@ -40,11 +41,8 @@ rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/C*/* ftpdatapush@${wb
 
 rsync -avog  maps/reanalysis/ERA5/dek/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/reanalysis/ERA5/dek/sadc/hw*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-#rsync -avog --size-only /home/sadc/data/products/RCC/Quicklooks/Dekadal/csc-precip-total-arc2-dekadal/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 
 # sync pentadal
-#rsync -avog --size-only /home/sadc/data/products/RCC/Quicklooks/Pentadal/csc-precip-total-arc2-pentadal/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal

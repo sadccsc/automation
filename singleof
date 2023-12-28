@@ -5,7 +5,7 @@
 # then the running process will be killed and a new one will be started.
 #
 #
-logpath=/home/station/csis/logs/
+logpath=/home/csis/csis/logs/
 script="${@}"
 scriptname=$(echo "$script" | awk '{print $1}')
 scriptname=${scriptname##*/}
