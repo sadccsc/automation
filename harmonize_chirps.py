@@ -63,7 +63,7 @@ else:
     print("processing {}...".format(inputfile))
     #reading tif file with rasterio. 
     #Tif file does not have date stored internally, thus date dimension is added to the dataarray
-    da=xr.open_rasterio(inputfile).expand_dims(time=[filedate])
+    da=rioxarray.open_rasterio(inputfile).expand_dims(time=[filedate])
     # after adding date, file has 4 dimensions, as the dataarray keeps "band" dimension inherited from tif file.
     # this removes that dimension
     da=da[:,0,:,:]

@@ -12,17 +12,6 @@ ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
 
-lstfile=$scriptdir/plot_chirps.lst
-
-#reading members list (i.e. list of models to be processed. These are stored in members.txt file
-echo reading plot.lst
-parameters=()
-while read -r line; do
-    if [ ! ${line:0:1} == "#" ];then
-        parameters+=($line)
-    fi
-done < $lstfile
-echo read ${#parameters[@]} entries
 
 #if script receives two arguments - set end date
 if [ $# == 2 ]; then
@@ -37,6 +26,24 @@ if [ $# -ge 1 ]; then
 else
     startdate=$(date +"%Y%m%d" -d "$enddate - 2 months")
 fi
+
+if [ $# == 3 ]; then
+    lstfile=$scriptdir/$3
+else
+    lstfile=$scriptdir/plot_chirps.lst
+fi
+
+#reading members list (i.e. list of models to be processed. These are stored in members.txt file
+echo reading plot.lst
+parameters=()
+while read -r line; do
+    if [ ! ${line:0:1} == "#" ];then
+        parameters+=($line)
+    fi
+done < $lstfile
+echo read ${#parameters[@]} entries
+
+
 
 echo startdate: $startdate
 echo enddate: $enddate

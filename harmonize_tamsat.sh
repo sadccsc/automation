@@ -55,7 +55,7 @@ while [ "$cdate" -le $enddate ]; do
         echo found input file $indir/${infile}
         #if exists - iterating through domains, Tamsat does cover neiter Mauritius nor Seychelles, so only SADC and Comorow are possible.
         #processing SADC only
-        for domain in test; do
+        for domain in sadc; do
             echo processing domain: $domain
 
             #just in case directory does not exist

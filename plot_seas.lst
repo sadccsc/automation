@@ -18,7 +18,7 @@
 # sey,com,mau: CHIRPS-v2.0-p05
 # 
 
-#CHIRPS-v2.0-p05-merged,observed,sadc,seas,PRCPTOT,index,1991,2020,0
+CHIRPS-v2.0-p05-merged,observed,sadc,seas,PRCPTOT,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,seas,PRCPTOT,percnormanom,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,seas,Rx1day,index,1991,2020,0
 CHIRPS-v2.0-p05-merged,observed,sadc,seas,Rx5day,index,1991,2020,0

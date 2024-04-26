@@ -410,8 +410,8 @@ for day,datafile in datafiles:
                             vmax=90
                             levels=np.arange(0,90,10)
 
-                        cmap_rb = plt.get_cmap('YlGnBu_r')
-                        cols = cmap_rb(np.linspace(0.2, 0.9, len(levels)))
+                        cmap_rb = plt.get_cmap('turbo')
+                        cols = cmap_rb(np.linspace(0.3, 0.8, len(levels)))
                         cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
                         ticklevels=levels
                         ticklabels=None 
@@ -435,8 +435,8 @@ for day,datafile in datafiles:
                             vmax=90
                             levels=np.arange(0,90,10)
 
-                        cmap_rb = plt.get_cmap('YlGnBu')
-                        cols = cmap_rb(np.linspace(0.2, 0.9, len(levels)))
+                        cmap_rb = plt.get_cmap('turbo_r')
+                        cols = cmap_rb(np.linspace(0.2, 0.7, len(levels)))
                         cols[0]=(1,1,1,1)
                         cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
                         ticklevels=levels

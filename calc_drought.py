@@ -45,10 +45,10 @@ def calcspi(_prec, _scale,_dist,_freq,_fyear,_cfyear,_ceyear):
 def get_spi(_data,_scale,_fdatay,_frefy,_lrefy):
 #    print(_data)
     if np.sum(np.isnan(_data))==0:
-        output=calcspi(_data,_scale,"gamma","monthly",_fdatay,_frefy,_lrefy)
+        _temp=calcspi(_data,_scale,"gamma","monthly",_fdatay,_frefy,_lrefy)
     else:
-        output=_data
-    return output
+        _temp=_data
+    return _temp
 
 def get_spells(_data, _thresh,_spell):
 #    print(_distrib.shape, _data.shape)
@@ -113,6 +113,7 @@ if attribute=="index":
     
     outvar="spi{}".format(scale)
     outputfile="{}/{}_{}_{}_{}_{}{}.nc".format(outputdir,outvar,basetime,dataset,domain,year,month)
+    print(outputfile)
     if os.path.exists(outputfile) and overwrite==False:
         print("{} exists, and overwrite is off. skipping...".format(outputfile))
         sys.exit()

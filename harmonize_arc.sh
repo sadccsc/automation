@@ -54,7 +54,7 @@ while [ "$cdate" -le $enddate ]; do
         echo found input file $indir/${infile}
         #if exists - iterating through domains. ARC data extend till 55E, so no Mauritius and no Seychelles
         #processing sadc only
-        for domain in test; do
+        for domain in sadc; do
             echo processing domain: $domain
             #just in case directory does not exist
             if [ ! -e $outdir/$domain ]; then
