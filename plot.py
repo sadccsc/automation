@@ -29,6 +29,7 @@ day=str(currentdate.day).zfill(2)
 monthval=currentdate.month
 month=str(currentdate.month).zfill(2)
 year=str(currentdate.year)
+yearval=currentdate.year
 
 
 
@@ -408,7 +409,7 @@ for day,datafile in datafiles:
                             levels=np.arange(0,6,1)
                         else:
                             vmax=90
-                            levels=np.arange(0,90,10)
+                            levels=np.arange(0,91,10)
 
                         cmap_rb = plt.get_cmap('turbo')
                         cols = cmap_rb(np.linspace(0.3, 0.8, len(levels)))
@@ -433,7 +434,7 @@ for day,datafile in datafiles:
                             levels=np.arange(0,6,1)
                         else:
                             vmax=90
-                            levels=np.arange(0,90,10)
+                            levels=np.arange(0,91,10)
 
                         cmap_rb = plt.get_cmap('turbo_r')
                         cols = cmap_rb(np.linspace(0.2, 0.7, len(levels)))
@@ -457,8 +458,8 @@ for day,datafile in datafiles:
                         units="days"
                         extend="max"
 
-                    if var =="R1mm":
-                        maxdays={"mon":[30,[0,3,6,9,12,15,18,21,24,27,30]],"dek":[10,range(11)],"pent":[5,range(6)],"seas":[90, np.arange(0,90,10)]}
+                    if var == "R1mm":
+                        maxdays={"mon":[30,[0,3,6,9,12,15,18,21,24,27,30]],"dek":[10,range(11)],"pent":[5,range(6)],"seas":[90, np.arange(0,91,10)]}
                         vmax=maxdays[basetime][0]
                         levels=maxdays[basetime][1]
                         vmin=0

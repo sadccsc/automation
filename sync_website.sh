@@ -9,14 +9,18 @@ else
 fi
 echo $today
 
-#sync seasonal
+echo
+echo ---------------------------------------------------------------------------------------------
+echo syncing seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog maps/reanalysis/ERA5/seas/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 rsync -avog maps/reanalysis/ERA5/seas/sadc/h*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
 
-# sync monthly
+echo
+echo ---------------------------------------------------------------------------------------------
+echo syncing monthly
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
@@ -31,7 +35,9 @@ rsync -avog maps/reanalysis/ERA5/mon/sadc/T*/*_* ftpdatapush@${wbsgas}:/var/www/
 rsync -avog  maps/reanalysis/ERA5/mon/sadc/hw*/*_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
 
 
-# sync dekadal
+echo
+echo ---------------------------------------------------------------------------------------------
+echo syncing dekadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
@@ -41,8 +47,9 @@ rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/C*/* ftpdatapush@${wb
 
 rsync -avog  maps/reanalysis/ERA5/dek/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
 rsync -avog  maps/reanalysis/ERA5/dek/sadc/hw*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-
-# sync pentadal
+echo
+echo ---------------------------------------------------------------------------------------------
+echo syncing pentadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
 rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal

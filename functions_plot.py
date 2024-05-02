@@ -10,7 +10,7 @@ import os, sys, glob
 from matplotlib.offsetbox import AnnotationBbox, OffsetImage
 
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","SON","OND","NDJ","DJF"]
+seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","ASO","SON","OND","NDJ","DJF"]
 
 def get_catcmap(_xrdata, _cmap, _vmin,_vmax,_ncat,_centre):
     #this generates categorical colormap
@@ -98,7 +98,7 @@ def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
     if basetime=="seas":
         if month==12:
             yearexpr="{}-{}".format(year,int(year)+1)
-            year=year+1
+            year=int(year)+1
             lastmonth=2
         else:
             yearexpr=str(year)
