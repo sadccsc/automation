@@ -1,0 +1,26 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+# allowed terms: 
+# variable: pr
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05
+# domain: sadc sey com mau
+# basetime: mon seas year pent dek
+# index: PRCPTOT Rx1day Rx5day
+# anomtype: relative, absolute, quantile
+# ovwerwrite: 0,1
+#
+# not all combinations of dataset and domain are possible, as not all datasets cover all domains, and not all datasets have appropriate resolution for small domains
+# sadc: all
+# sey,com,mau: CHIRPS-v2.0-p05
+# 
+
+CHIRPS-v2.0-p05-merged,observed,sadc,mon,CDD,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,CWD,index,1991,2020,1
+#CHIRPS-v2.0-p05-merged,observed,sadc,dek,CDD,index,1991,2020,1
+#CHIRPS-v2.0-p05-merged,observed,sadc,dek,CWD,index,1991,2020,1
+#CHIRPS-v2.0-p05-merged,observed,sadc,pent,CDD,index,1991,2020,1
+#CHIRPS-v2.0-p05-merged,observed,sadc,pent,CWD,index,1991,2020,1

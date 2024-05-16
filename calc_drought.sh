@@ -1,7 +1,7 @@
 
 #!/bin/bash
 #
-# script to call python script that derives product based on etccdi
+# script to call python script that derives drought monitoring products
 #
 # P.Wolski
 # June 2023
@@ -15,89 +15,99 @@ scriptdir=$(dirname $ABSPATH)
 
 source $scriptdir/csisEnv
 
-#if script receives two arguments - set end date
+#if script receives no arguments - stop execution
+if [ $# == 0 ]; then
+   echo ERROR. This script requires at least one argument - the name of the lst file. None provided. Stopping execution...
+   echo Expected usage:
+   echo calc_drought.sh lstfile.lst [startdate] [enddate] 
+   exit
+else
+    lstfile=$1
+    if [ ! -f $lstfile ]; then
+        echo "ERROR. lst file $lstfile does not exist. Stopping execution..."
+        exit
+    fi 
+fi
+
+#if two or more arguments - set start date
 if [ $# -ge 2 ]; then
-    enddate=$2
+    startdate=$2
+else
+    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
+fi
+
+#if script receives three arguments - set end date
+if [ $# == 3 ]; then
+    enddate=$3
 else
     enddate=$(date +"%Y%m%d")
 fi
 
-#if at leaset one argument - set start date
-if [ $# -ge 1 ]; then
-    startdate=$1
-else
-    # this is done for seasonal, monthly, dekadal and pentadal products
-    # 2 months back time is needed to retro update chirps
-    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
-fi
 
-if [ $# == 3 ]; then
-    lstfile=$scriptdir/$3
-else
-    lstfile=$scriptdir/calc_drought.lst
-fi
-
+echo listfile: $lstfile
+echo startdate: $startdate
+echo enddate: $enddate
 
 #reading members list (i.e. list of models to be processed. These are stored in members.txt file
 echo reading $lstfile
-indices=()
+parameters=()
 while read -r line; do
     if [ ! ${line:0:1} == "#" ];then
-        indices+=($line)
+        parameters+=($line)
     fi
 done < $lstfile
-echo read ${#indices[@]} entries
+echo read ${#parameters[@]} entries
 
+for item in ${parameters[@]}; do
+    item=(${item//,/ })
+    dataset=${item[0]} #ARC2 TAMSAT-v3.1
+    datatype=${item[1]} #ARC2 TAMSAT-v3.1
+    domain=${item[2]} #sadc
+    var=${item[3]} #PRCPTOT
+    basetime=${item[4]} #mon
+    index=${item[5]} #SPI
+    scale=${item[6]} #1,3,6,12 etc months
+    attribute=${item[7]} #index dur sev
+    climstartyear=${item[8]} #1991
+    climendyear=${item[9]} #2010
+    fracmissing=${item[10]} #0 o 0.1
+    overwrite=${item[11]} #0 or 1
 
-cdate=$startdate
-echo start date: $cdate 
-echo end date: $enddate
-
-
-
-#iterating through dates
-while [ "$cdate" -le $enddate ]; do
-    year=$(date +"%Y" -d "$cdate")
-    month=$(date +"%m" -d "$cdate")
-    day=$(date +"%d" -d "$cdate")
-    
-    echo
-    echo
-    echo "************************************************************"
-    echo current date: $cdate
-
-    for item in ${indices[@]}; do
-	item=(${item//,/ })
-	dataset=${item[0]} #ARC2 TAMSAT-v3.1
-	datatype=${item[1]} #ARC2 TAMSAT-v3.1
-	domain=${item[2]} #sadc
-	var=${item[3]} #PRCPTOT
-	basetime=${item[4]} #mon
-	index=${item[5]} #SPI
-	scale=${item[6]} #1,3,6,12 etc months
-	attribute=${item[7]} #index dur sev
-	climstartyear=${item[8]} #1991
-	climendyear=${item[9]} #2010
-	fracmissing=${item[10]} #0 o 0.1
-	overwrite=${item[11]} #0 or 1
-
-	indir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$var
-	#directory where processed data will be stored. this should not change even if root dir changes
-	outdir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$index$scale
+    #composing intput directory
+    indir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$var
+    #directory where processed data will be stored. this should not change even if root dir changes
+    outdir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$index$scale
 	
-	if [ ! -e $outdir ]; then
-	    mkdir -p $outdir
-	fi
+    if [ ! -e $outdir ]; then
+	mkdir -p $outdir
+    fi
+
+    cdate=$startdate
+
+    #iterating through dates
+    while [ "$cdate" -le $enddate ]; do
+        year=$(date +"%Y" -d "$cdate")
+	month=$(date +"%m" -d "$cdate")
+	day=$(date +"%d" -d "$cdate")
+        echo
+        echo
+        echo "************************************************************"
+        echo dataset $dataset
+        echo domain $domain
+        echo basetime $basetime
+        echo index $index
+        echo attribute $attribute
+        echo current date: $cdate
+        echo "--------------------"
+
 
         args="$dataset $domain $var $cdate $basetime $index $scale $attribute $climstartyear $climendyear $fracmissing $overwrite"
-        echo
-        echo "*********************************"
-        echo calling calc_drought.py with $args
-
-
+        echo calling:
         echo python $scriptdir/calc_drought.py $indir $outdir $args
+        echo "--------------------"
         python3 $scriptdir/calc_drought.py $indir $outdir $args
     done
+    #progressing dates
     cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     #exit
 done

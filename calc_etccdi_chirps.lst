@@ -52,3 +52,15 @@ CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,R1mm,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,R10mm,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,R20mm,index,1991,2020,0,0
 
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,PRCPTOT,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,PRCPTOT,percnormanom,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,Rx1day,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,Rx5day,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,CDD,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,CWD,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,SDII,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,R1mm,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,R10mm,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,seas,R20mm,index,1991,2020,0,0
+
+

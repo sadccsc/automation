@@ -130,7 +130,6 @@ accumdefs={
 #this is a temporary solution. ultimately, one would need to build the regime into lst file and onset and seasaccum calculation scripts
 regime="summer"
 
-
 varcat=varcategories[var]
 
 datasetname=datasetnames[dataset]
@@ -159,8 +158,26 @@ if varcat=="seasaccum":
 datafiles=[]
 
 if attr=="clim":
-    datafile="{}/{}{}_{}_{}_{}_{}-{}.nc".format(inputdir,var,attrfilecode, basetime, dataset,domain,climstartyear,climendyear)
-    datafiles.append([day,datafile])
+    if basetime=="seas":
+        datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
+        #datafile="{}/{}{}_{}_{}_{}_{}{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain,year,str(month).zfill(2))
+        datafiles.append([day,datafile])
+    if basetime=="mon":
+        datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
+        #datafile="{}/{}{}_{}_{}_{}_{}{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain,year,str(month).zfill(2))
+        datafiles.append([day,datafile])
+    if basetime=="dek":
+        for firstday in [1,11,21]:
+            datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
+           # datafile="{}/{}{}_{}_{}_{}_{}{}{}.nc".format(inputdir,var,attrfilecode,basetime, dataset,domain, year,str(month).zfill(2),str(firstday).zfill(2))
+            datafiles.append([firstday,datafile])
+    if basetime=="pent":
+        for firstday in [1,6,11,16,21,26]:
+            datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
+            #datafile="{}/{}{}_{}_{}_{}_{}{}{}.nc".format(inputdir,var,attrfilecode,basetime, dataset,domain, year,str(month).zfill(2),str(firstday).zfill(2))
+            datafiles.append([firstday,datafile])
+
+
 elif attr=="index":
     if basetime=="seas":
         datafile="{}/{}{}_{}_{}_{}_{}{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain,year,str(month).zfill(2))
@@ -194,7 +211,7 @@ else:
             datafile="{}/{}{}_{}_{}_{}_{}{}{}_{}-{}.nc".format(inputdir,var,attrfilecode,basetime, dataset,domain, year,str(month).zfill(2),str(firstday).zfill(2),climstartyear,climendyear)
             datafiles.append([firstday,datafile])
     else:
-        print("requested basetime {} cannot be processed. exiting...".format(basetim))
+        print("ERROR. Requested basetime {} cannot be processed. exiting...".format(basetim))
         sys.exit()
 
 
@@ -202,45 +219,43 @@ else:
 #checking if files exist
 
 overlayfile=domainoverlays[domain]
-print("overlay file:",overlayfile)
+print("Using overlay file:",overlayfile)
 
 if not os.path.exists(overlayfile):
-    print("overlay file {} does not exist. exiting.".format(overlayfile))
+    print("ERROR! Overlay file does not exist: {}".format(overlayfile))
     sys.exit()
 overlayvector = geopandas.read_file(overlayfile)
 
 
 logofile="./img/sadclogo-small.png"
-print("logo file:",logofile)
+print("Using logo file:",logofile)
 
 if not os.path.exists(logofile):
-    print("logo file {} does not exist. exiting.".format(logofile))
+    print("ERROR! Logo file does not exist: {}".format(logofile))
     sys.exit()
 
 
-print(datafiles)
-
-
 for day,datafile in datafiles:
-    print("datafile:",day,datafile)
     if not os.path.exists(datafile):
-        print("data file {} does not exist. skipping.".format(datafile))
+        print("Skipping. Required data file does not exist: {}".format(datafile))
     else:
-        if attr in ["relanom","clim","quantanom","absanom","percnormanom"]: 
+        print("Found datafile:",day,datafile)
+        if attr in ["relanom","quantanom","absanom","percnormanom"]: 
             filename=os.path.basename(datafile)
             filename="_".join(filename.split("_")[:-1])
             mapfile="{}/{}.{}".format(outputdir,filename,"png")
+        elif attr in ["clim"]: 
+            mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc","_{}.png".format(month)))
         else:
             mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc",".png"))
-        print("output map file:",mapfile)
         elems=mapfile.split("_")
         mapfile="_".join(["-".join(elems[0:3]),"_".join(elems[3:])])
-        print("output map file:",mapfile)
         #sys.exit()
 
         if os.path.exists(mapfile) and overwrite==False:
-            print("map file {} exists and overwrite is off. skipping.".format(mapfile))
+            print("Skipping. Map file exists and overwrite is off. {}".format(mapfile))
         else:
+            print("Processing. Output map file does not exist. {}...".format(mapfile))
 
 
             #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

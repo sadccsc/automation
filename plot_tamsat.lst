@@ -1,0 +1,78 @@
+# this is the list of indices to be calculated using calcindices.py
+# 
+# each line have to have entries in the following sequence: variable,dataset,domain,basetime,index
+# there must be no spaces
+# lines commented with # and empty lines will be ignored
+#
+# allowed terms: 
+# variable: pr
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05
+# domain: sadc sey com mau
+# basetime: mon seas year pent dek
+# index: PRCPTOT Rx1day Rx5day
+# anomtype: relative, absolute, quantile
+# ovwerwrite: 0,1
+#
+# not all combinations of dataset and domain are possible, as not all datasets cover all domains, and not all datasets have appropriate resolution for small domains
+# sadc: all
+# sey,com,mau: CHIRPS-v2.0-p05
+# 
+# not all combinations of basetime and index make sense. Suggested are:
+# year: all
+# seas: all
+# mon: all
+# dek: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII 
+# pent: PRCPTOT,RX1day,R1mm,R10mm,R20mm,SDII
+
+
+#TAMSAT-v3.1,observed,sadc,seas,PRCPTOT,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,PRCPTOT,clim,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,PRCPTOT,percnormanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,Rx1day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,Rx5day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,CDD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,CWD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,SDII,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,R1mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,R10mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,seas,R20mm,index,1991,2020,0
+
+
+#TAMSAT-v3.1,observed,sadc,mon,PRCPTOT,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,PRCPTOT,clim,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,PRCPTOT,percnormanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,PRCPTOT,quantanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,Rx1day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,Rx5day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,CDD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,CWD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,SDII,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,R1mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,R10mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,mon,R20mm,index,1991,2020,0
+
+#TAMSAT-v3.1,observed,sadc,dek,PRCPTOT,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,PRCPTOT,clim,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,PRCPTOT,percnormanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,PRCPTOT,quantanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,Rx1day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,Rx5day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,CDD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,CWD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,SDII,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,R1mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,R10mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,dek,R20mm,index,1991,2020,0
+
+#TAMSAT-v3.1,observed,sadc,pent,PRCPTOT,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,PRCPTOT,clim,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,PRCPTOT,percnormanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,PRCPTOT,quantanom,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,Rx1day,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,CDD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,CWD,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,SDII,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,R1mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,R10mm,index,1991,2020,0
+#TAMSAT-v3.1,observed,sadc,pent,R20mm,index,1991,2020,0
+

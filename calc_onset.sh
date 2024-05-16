@@ -12,38 +12,51 @@ ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
 
-lstfile=$scriptdir/calc_onset.lst
-
-#reading members list (i.e. list of models to be processed. These are stored in members.txt file
-echo reading $lstfile
-indices=()
-while read -r line; do
-    if [ ! ${line:0:1} == "#" ];then
-        indices+=($line)
-    fi
-done < $lstfile
-echo read ${#indices[@]} entries
-
-#if script receives two arguments - set end date
-if [ $# == 2 ]; then
-    enddate=$2
+#if script receives no arguments - stop execution
+if [ $# == 0 ]; then
+   echo ERROR. This script requires at least one argument - the name of the lst file. None provided. Stopping execution...
+   echo Expected usage:
+   echo calc_onset.sh lstfile.lst [startdate] [enddate] 
+   exit
 else
-    enddate=$(date +"%Y%m%d")
+    lstfile=$1
+    if [ ! -f $lstfile ]; then
+        echo "ERROR. lst file $lstfile does not exist. Stopping execution..."
+        exit
+    fi 
 fi
 
-#if at leaset one argument - set start date
-if [ $# -ge 1 ]; then
-    startdate=$1
+#if two or more arguments - set start date
+if [ $# -ge 2 ]; then
+    startdate=$2
 else
     startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
 fi
 
+#if script receives three arguments - set end date
+if [ $# == 3 ]; then
+    enddate=$3
+else
+    enddate=$(date +"%Y%m%d")
+fi
 
-
+echo listfile: $lstfile
 echo startdate: $startdate
 echo enddate: $enddate
 
-for item in ${indices[@]}; do
+#reading members list (i.e. list of models to be processed. These are stored in members.txt file
+echo reading $lstfile
+parameters=()
+while read -r line; do
+    if [ ! ${line:0:1} == "#" ];then
+        parameters+=($line)
+    fi
+done < $lstfile
+echo read ${#parameters[@]} entries
+
+
+
+for item in ${parameters[@]}; do
     item=(${item//,/ })
     dataset=${item[0]} #ARC2 TAMSAT-v3.1
     datatype=${item[1]} #sadc
@@ -74,33 +87,29 @@ for item in ${indices[@]}; do
 
     #current date, i.e. date being processed
     cdate=$startdate
-    echo start date: $cdate 
-    echo end date: $enddate
-
-
 
     #iterating through dates
     while [ "$cdate" -le $enddate ]; do
         year=$(date +"%Y" -d "$cdate")
         month=$(date +"%m" -d "$cdate")
         day=$(date +"%d" -d "$cdate")
-        
-        echo
-        echo
-        echo "************************************************************"
+        echo dataset $dataset
+        echo domain $domain
+        echo basetime $basetime
+        echo index $index
+        echo attribute $attribute
         echo current date: $cdate
+        echo "--------------------"
 
         args="$dataset $domain $var $cdate $basetime $index $attribute $climstartyear $climendyear $fracmissing $overwrite"
-        echo
-        echo "*********************************"
-        echo calling calc_onset.py with $args
-
-
+        echo calling:
         echo python $scriptdir/calc_onset.py $indir $indexdir $args
+        echo "--------------------"
+
         python3 $scriptdir/calc_onset.py $indir $indexdir $args
         cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
+        #this one steps by month, because shorter baseline indices are all calculated for all periods for which data are available in a given month
     done
-    #this one steps by month, because shorter baseline indices are all calculated for all periods for which data are available in a given month
     #exit
 done
 

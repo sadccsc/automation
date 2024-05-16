@@ -39,3 +39,11 @@ ERA5,reanalysis,sadc,tasmax,pent,TX,absanom,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmin,pent,TNn,index,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,pent,TXx,index,1991,2020,0,0
 
+ERA5,reanalysis,sadc,tasmin,seas,TN,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,seas,TN,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,seas,TNn,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TX,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TX,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TXx,index,1991,2020,0,0
+
+
