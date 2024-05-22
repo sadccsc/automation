@@ -307,7 +307,6 @@ if attribute=="index":
                 )
                 hw=temp.transpose("time","lat","lon")
                 hw.sel(time=slice(firstdate,lastdate))
-
                 hw=hw.where(hw>=3)
                 #heat wave frequency
                 output=hw.sum("time")

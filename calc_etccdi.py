@@ -323,13 +323,13 @@ if attribute=="index":
                         wetday,
                         "wet",
                         input_core_dims=[["time"],[],[]],
-                        output_core_dims=[["time"]],
                         vectorize=True
                     )
                     
                     #that will be for target date
-                    dlywetspell=temp.transpose("time","lat","lon")
-                    output=dlywetspell.max("time")
+                    #dlywetspell=temp.transpose("time","lat","lon")
+                    #output=dlywetspell.max("time")
+                    output=temp.transpose("lat","lon")
                     output=output.expand_dims(time=[ds.time[0].values])
                     units="day"
                     comment="ETCCDI index"
@@ -343,13 +343,11 @@ if attribute=="index":
                         wetday,
                         "dry",
                         input_core_dims=[["time"],[],[]],
-                        output_core_dims=[["time"]],
                         vectorize=True
                     )
 
                     #that will be for target date
-                    dlywetspell=temp.transpose("time","lat","lon")
-                    output=dlywetspell.max("time")
+                    output=temp.transpose("lat","lon")
                     output=output.expand_dims(time=[ds.time[0].values])
                     output=xr.DataArray(output)
                     units="day"

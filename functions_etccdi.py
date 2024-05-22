@@ -4,6 +4,24 @@ def get_spells(_data, _thresh,_spell):
 #    print(_distrib.shape, _data.shape)
     _temp=np.copy(_data)
     if np.isnan(_data[0])==False:
+        if _spell=="wet":
+            _temp=_temp>=_thresh
+        else:
+            _temp=_temp<_thresh
+        _runs=np.diff(np.where(np.concatenate(([_temp[0]],
+                                     _temp[:-1] != _temp[1:],
+                                     [True])))[0])[::2]
+        if len(_runs)>0:
+            return(np.max(_runs.astype(float)))
+        else:
+            return(np.array([0]))
+    else:
+        return(np.array([np.nan]))
+
+def get_spells_old(_data, _thresh,_spell):
+#    print(_distrib.shape, _data.shape)
+    _temp=np.copy(_data)
+    if np.isnan(_data[0])==False:
         _temp[_temp<_thresh]=0
         _temp[_temp>=_thresh]=1
         
@@ -22,6 +40,7 @@ def get_spells(_data, _thresh,_spell):
         return(_runs)
     else:
         return(_temp)
+
 
 
 def get_dekad(_date):

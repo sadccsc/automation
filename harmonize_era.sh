@@ -16,7 +16,7 @@ var2=tasmax
 #defining directories
 #rootdir defined in csisEnv
 #directory with incoming data, this should not change even in root dir changes
-indir=$rootdir/incoming/ERA5/hr
+indir=$rootdir/incoming/ERA5/africa/hr
 #directory where processed data will be stored. this should not change even if root dir changes
 outdir=$rootdir/data/reanalysis/ERA5/day
 

@@ -15,7 +15,7 @@ source $ABSDIR/csisEnv
 
 #defining directories
 #rootdir defined in csisEnv
-outdir=$rootdir/incoming/ERA5/hr/
+outdir=$rootdir/incoming/ERA5/africa/hr/
 
 #if script receives two arguments - set end date, otherwise end date is today
 if [ $# == 2 ]; then
