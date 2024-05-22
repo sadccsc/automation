@@ -12,38 +12,52 @@ ABSPATH=$(readlink -f $0)
 scriptdir=$(dirname $ABSPATH)
 source $scriptdir/csisEnv
 
-lstfile=$scriptdir/calc_heatwave.lst
 
-#reading members list (i.e. list of models to be processed. These are stored in members.txt file
-echo reading $lstfile
-indices=()
-while read -r line; do
-    if [ ! ${line:0:1} == "#" ];then
-        indices+=($line)
-    fi
-done < $lstfile
-echo read ${#indices[@]} entries
-
-#if script receives two arguments - set end date
-if [ $# == 2 ]; then
-    enddate=$2
+#if script receives no arguments - stop execution
+if [ $# == 0 ]; then
+   echo ERROR. This script requires at least one argument - the name of the lst file. None provided. Stopping execution...
+   echo Expected usage:
+   echo calc_heatwave.sh lstfile.lst [startdate] [enddate] 
+   exit
 else
-    enddate=$(date +"%Y%m%d")
+    lstfile=$1
+    if [ ! -f $lstfile ]; then
+        echo "ERROR. lst file $lstfile does not exist. Stopping execution..."
+        exit
+    fi 
 fi
 
-#if at leaset one argument - set start date
-if [ $# -ge 1 ]; then
-    startdate=$1
+#if two or more arguments - set start date
+if [ $# -ge 2 ]; then
+    startdate=$2
 else
     startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
 fi
 
+#if script receives three arguments - set end date
+if [ $# == 3 ]; then
+    enddate=$3
+else
+    enddate=$(date +"%Y%m%d")
+fi
 
 
+echo listfile: $lstfile
 echo startdate: $startdate
 echo enddate: $enddate
 
-for item in ${indices[@]}; do
+#reading members list (i.e. list of models to be processed. These are stored in members.txt file
+echo reading $lstfile
+parameters=()
+while read -r line; do
+    if [ ! ${line:0:1} == "#" ];then
+        parameters+=($line)
+    fi
+done < $lstfile
+echo read ${#parameters[@]} entries
+
+
+for item in ${parameters[@]}; do
     item=(${item//,/ })
     dataset=${item[0]} #ARC2 TAMSAT-v3.1
     datatype=${item[1]} #sadc

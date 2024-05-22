@@ -9,7 +9,6 @@ CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,index,1991,2020,0,0
 
-
 #these are not calculated - need to sort out missing days
 #ARC2,observed,sadc,pr,mon,seasaccum,index,1991,2020,0,0
 #ARC2,observed,sadc,pr,dek,seasaccum,index,1991,2020,0,0
