@@ -26,18 +26,19 @@ else
     fi 
 fi
 
-#if two or more arguments - set start date
-if [ $# -ge 2 ]; then
-    startdate=$2
-else
-    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
-fi
-
 #if script receives three arguments - set end date
 if [ $# == 3 ]; then
     enddate=$3
 else
     enddate=$(date +"%Y%m%d")
+fi
+
+
+#if two or more arguments - set start date
+if [ $# -ge 2 ]; then
+    startdate=$2
+else
+    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
 fi
 
 
@@ -113,6 +114,7 @@ for item in ${parameters[@]}; do
 
         echo python $scriptdir/calc_seasaccum.py $indir $indexdir $args
         python3 $scriptdir/calc_seasaccum.py $indir $indexdir $args
+
         cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     done
     #this one steps by month, because shorter baseline indices are all calculated for all periods for which data are available in a given month

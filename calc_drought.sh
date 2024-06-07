@@ -29,13 +29,6 @@ else
     fi 
 fi
 
-#if two or more arguments - set start date
-if [ $# -ge 2 ]; then
-    startdate=$2
-else
-    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
-fi
-
 #if script receives three arguments - set end date
 if [ $# == 3 ]; then
     enddate=$3
@@ -44,9 +37,18 @@ else
 fi
 
 
+#if two or more arguments - set start date
+if [ $# -ge 2 ]; then
+    startdate=$2
+else
+    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
+fi
+
+
 echo listfile: $lstfile
 echo startdate: $startdate
 echo enddate: $enddate
+
 
 #reading members list (i.e. list of models to be processed. These are stored in members.txt file
 echo reading $lstfile
@@ -106,9 +108,8 @@ for item in ${parameters[@]}; do
         echo python $scriptdir/calc_drought.py $indir $outdir $args
         echo "--------------------"
         python3 $scriptdir/calc_drought.py $indir $outdir $args
+	#progressing dates
+	cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
     done
-    #progressing dates
-    cdate=$(date +"%Y%m%d" -d "$cdate + 1 month")
-    #exit
 done
 
