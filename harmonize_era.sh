@@ -13,6 +13,7 @@ source $scriptdir/csisEnv
 
 var1=tasmin
 var2=tasmax
+var3=tas
 #defining directories
 #rootdir defined in csisEnv
 #directory with incoming data, this should not change even in root dir changes
@@ -66,19 +67,23 @@ while [ "$cdate" -le $enddate ]; do
             if [ ! -e $outdir/$domain/$var2 ]; then
                 mkdir -p $outdir/$domain/$var2
             fi
+            if [ ! -e $outdir/$domain/$var3 ]; then
+                mkdir -p $outdir/$domain/$var3
+            fi
             echo processing domain: $domain
             #outfile name
             outfile1=tasmin_day_ERA5_${domain}_${year1}${month1}${day1}.nc
             outfile2=tasmax_day_ERA5_${domain}_${year1}${month1}${day1}.nc
+            outfile3=tas_day_ERA5_${domain}_${year1}${month1}${day1}.nc
 
             #checking if outfile exists
-            if [ -f $outdir/$domain/$var1/$outfile1 ]; then
-                echo $outdir/$domain/$var1/$outfile1 exists. skipping...
+            if [ -f $outdir/$domain/$var3/$outfile3 ]; then
+                echo $outdir/$domain/$var3/$outfile3 exists. skipping...
             else
                 #processing if does not exist
-                echo output file $outdir/$domain/$var1/$outfile1 does not exist. processing...
+                echo output file $outdir/$domain/$var3/$outfile3 does not exist. processing...
 
-                cmd="python3 $scriptdir/harmonize_era.py $indir/$infile1 $indir/$infile2 $outdir/$domain/$var1/$outfile1 $outdir/$domain/$var2/$outfile2 $cdate $domain"
+                cmd="python3 $scriptdir/harmonize_era.py $indir/$infile1 $indir/$infile2 $outdir/$domain/$var1/$outfile1 $outdir/$domain/$var2/$outfile2 $outdir/$domain/$var3/$outfile3 $cdate $domain"
                 echo executing: 
                 echo $cmd
                 $cmd
