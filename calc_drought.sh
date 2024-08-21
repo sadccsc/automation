@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #
 # script to call python script that derives drought monitoring products

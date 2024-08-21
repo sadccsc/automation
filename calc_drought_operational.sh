@@ -12,6 +12,6 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
 
-#processing onset listfile. It's only one file, because there are relatively few onset indices, so all datasets can be processed at the same time
-$ABSDIR/calc_seasaccum.sh calc_seasaccum.lst
+#processing drought listfile. It's only one file, because there are relatively few drought indices, so all datasets can be processed at the same time
+$ABSDIR/calc_drought.sh calc_drought_operational.lst
 

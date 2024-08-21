@@ -32,7 +32,6 @@ year=str(currentdate.year)
 yearval=currentdate.year
 
 
-
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","ASO","SON","OND","NDJ","DJF"]
 
@@ -162,21 +161,17 @@ datafiles=[]
 if attr=="clim":
     if basetime=="seas":
         datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
-        #datafile="{}/{}{}_{}_{}_{}_{}{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain,year,str(month).zfill(2))
         datafiles.append([day,datafile])
     if basetime=="mon":
         datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
-        #datafile="{}/{}{}_{}_{}_{}_{}{}.nc".format(inputdir,var,attrfilecode, basetime,dataset,domain,year,str(month).zfill(2))
         datafiles.append([day,datafile])
     if basetime=="dek":
         for firstday in [1,11,21]:
             datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
-           # datafile="{}/{}{}_{}_{}_{}_{}{}{}.nc".format(inputdir,var,attrfilecode,basetime, dataset,domain, year,str(month).zfill(2),str(firstday).zfill(2))
             datafiles.append([firstday,datafile])
     if basetime=="pent":
         for firstday in [1,6,11,16,21,26]:
             datafile="{}/{}_{}{}_{}_{}_{}-{}.nc".format(inputdir,var, basetime,attrfilecode, dataset,domain,climstartyear,climendyear)
-            #datafile="{}/{}{}_{}_{}_{}_{}{}{}.nc".format(inputdir,var,attrfilecode,basetime, dataset,domain, year,str(month).zfill(2),str(firstday).zfill(2))
             datafiles.append([firstday,datafile])
 
 
@@ -244,15 +239,31 @@ for day,datafile in datafiles:
         print("Found datafile:",day,datafile)
         if attr in ["relanom","quantanom","absanom","percnormanom"]: 
             filename=os.path.basename(datafile)
+            #this just removes the climatology years from the file name
             filename="_".join(filename.split("_")[:-1])
             mapfile="{}/{}.{}".format(outputdir,filename,"png")
-        elif attr in ["clim"]: 
-            mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc","_{}.png".format(month)))
+        elif attr in ["clim"]:
+            if basetime in ["mon","seas"]:
+                mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc","_{}.png".format(month)))
+            elif basetime=="dek":
+                dekadcodes={1:1,11:2,21:3}
+                dekad=dekadcodes[day]
+                mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc","_{}-{}.png".format(month,dekad)))
+            elif basetime=="pent":
+                pentadcodes={1:1,6:2,11:3,16:4,21:5,26:6}
+                pentad=pentadcodes[day]
+                mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc","_{}-{}.png".format(month,pentad)))
+            else:
+                print("basetime not available {}".format(basetime))
+                sys.exit()
         else:
+            #this will be index
             mapfile="{}/{}".format(outputdir,os.path.basename(datafile).replace(".nc",".png"))
+
+
+        # this makes sure the mapfile format corresponds to what website can handle
         elems=mapfile.split("_")
         mapfile="_".join(["-".join(elems[0:3]),"_".join(elems[3:])])
-        #sys.exit()
 
         if os.path.exists(mapfile) and overwrite==False:
             print("Skipping. Map file exists and overwrite is off. {}".format(mapfile))
@@ -270,36 +281,43 @@ for day,datafile in datafiles:
 
             if attr=="clim":
                 data=ds[var].load()
-                data=data.sel(month=monthval)
-            else:
-                data=ds[var].load()
+                if basetime in ["mon","seas"]:
+                    data=data.sel(month=monthval)
+                elif basetime=="dek":
+                    dekadval=(monthval-1)*3+dekad
+                    data=data.sel(dekad=dekadval)
+                elif basetime=="pent":
+                    pentadval=(monthval-1)*6+pentad
+                    data=data.sel(pentad=pentadval)
+
+                ds[var]=data
 
             if var=="spi3":
-                data=ds[var]
+                data=ds[var].load()
                 data=data.where(~np.isnan(data),-4)
                 ds[var]=data
                 
             if var=="CDD":
-                data=ds[var]
+                data=ds[var].load()
                 data=data.where(~np.isnan(data),31)
                 ds[var]=data
 
             if var=="CWD":
-                data=ds[var]
+                data=ds[var].load()
                 data=data.where(~np.isnan(data),0)
                 ds[var]=data
 
             if var=="PRCPTOT-percnormanom":
-                data=ds[var]
+                data=ds[var].load()
                 data=data.where(~np.isnan(data),0)
                 ds[var]=data
 
+            #for some reason,clipping is done AFTER "preprocessing"
             ds=ds.rio.clip(overlayvector.geometry.values, "epsg:4326") #clipping to geojson
             data=ds[var]
 
             #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             #preparing for plotting
-
 
             attrname=attrnames[attr]
             varname=varnames[var]
@@ -411,6 +429,7 @@ for day,datafile in datafiles:
 
 
                     params={"mon":[30,np.arange(0,31,3)],"dek":[10,range(11)],"pent":[5,range(6)],"seas":[90, np.arange(0,90,10)]}
+
                     if var=="CDD":
                         vmax=params[basetime][0]
                         vmin=0
@@ -518,7 +537,7 @@ for day,datafile in datafiles:
                     uneven_levels = [-200,-100,-5,-4,-3,-2,-1,0,1,2,3,4,5]
                     cmap, norm = colors.from_levels_and_colors(uneven_levels, colorlist, extend="neither")
                     ticklevels = [-150,-50,-4.5,-3.5,-2.5,-1.5,-0.5,0.5,1.5,2.5,3.5,4.5]
-                    ticklabels=["not\nanalysed","not started", '-4', '-3', '-2', '-1',"0","1","2","3","4","5"]
+                    ticklabels=["not\nanalysed","not\nstarted", '-4', '-3', '-2', '-1',"0","1","2","3","4","5"]
                     units="    dekads early     dekads late"
                     extend="neither"
                     plotbackground=True
@@ -528,7 +547,7 @@ for day,datafile in datafiles:
                     levels = [-100,0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180]
                     cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
                     ticklevels = [-100,0,30,60,90,120,150]
-                    ticklabels=["not started", 'Sep', 'Oct', 'Nov', 'Dec', 'Jan',"Feb"]
+                    ticklabels=["not\nstarted", 'Sep', 'Oct', 'Nov', 'Dec', 'Jan',"Feb"]
                     units="dekad"
                     extend="neither"
 
@@ -587,6 +606,25 @@ for day,datafile in datafiles:
                     ticklevels=None
                     ticklabels=None
                     extend="both"
+                if attr=="clim":
+                    if q1<10:
+                        vmin=5
+                        vmax=25
+                    elif q1<15:
+                        vmin=10
+                        vmax=30
+                    else:
+                        vmin=15
+                        vmax=35
+                    ncat=21
+                    uneven_levels = np.linspace(vmin,vmax,ncat)
+                    cmap_rb = plt.get_cmap('RdBu_r')
+                    cols = cmap_rb(np.linspace(0, 1, len(uneven_levels)+1))
+                    cmap, norm = colors.from_levels_and_colors(uneven_levels, cols, extend="both")
+                    ticklevels=None
+                    ticklabels=None
+                    extend="both"
+
 
             if varcat=="spi":
                 vmin=-4
@@ -634,18 +672,47 @@ for day,datafile in datafiles:
                 units="days"
                 extend="max"
                 
-            if var=="seasaccum":
-                print(varcat)
-                vmin=0
-                vmax=500    
-                levels = np.linspace(vmin,vmax,11)
-                cmap_rb = plt.get_cmap('YlGnBu')
-                cols = cmap_rb(np.linspace(0, 1, len(levels)))
-                cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
-                ticklevels=None
-                ticklabels=None
-                units="mm"
-                extend="max"
+            if varcat=="seasaccum":
+                if attr=="index":
+                    print(varcat)
+                    vmin=0
+                    vmax=500    
+                    levels = np.linspace(vmin,vmax,11)
+                    cmap_rb = plt.get_cmap('YlGnBu')
+                    cols = cmap_rb(np.linspace(0, 1, len(levels)))
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+                    ticklevels=None
+                    ticklabels=None
+                    units="mm"
+                    extend="max"
+
+                elif attr=="relanom":
+                    vmin=-100
+                    vmax=100
+                    levels = np.linspace(vmin,vmax,11)    
+                    cmap_rb = plt.get_cmap('BrBG')
+                    cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
+                    cols[5]=(1,1,1,1)
+                    cols[6]=(1,1,1,1)
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
+                    levels=None
+                    ticklabels=None
+                    units="mm"
+                    extend="both"
+
+                elif attr=="percnormanom":
+                    vmin=10
+                    vmax=190
+                    levels = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190]
+                    cmap_rb = plt.get_cmap('BrBG')
+                    cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
+                    cols[9]=(1,1,1,1)
+                    cols[10]=(1,1,1,1)
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
+                    ticklevels=None
+                    ticklabels=None
+                    units="% of long-term mean"
+                    extend="both"
 
 
             plot_map(data,

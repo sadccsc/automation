@@ -2,3 +2,7 @@ incoming
 data
 maps
 __pycache__
+logs
+obsolete
+tools
+lstfiles

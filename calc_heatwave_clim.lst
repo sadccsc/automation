@@ -1,0 +1,34 @@
+##########################################################################
+# list of indices to be calculated using calc_heatwave.sh
+# this file is intended to be used to calculate clmatologies, so it's not
+# processed operationally
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# July 2024
+#
+##########################################################################
+#
+# each line have to have entries in the following sequence: dataset,datatype,domain,basetime,index,indextype,climfirstyear,climlastyear,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ignored
+#
+
+# each line have to have entries in the following sequence: 
+# dataset,datatype,domain,variable,basetime,index,indextype,climatologyfirstyear,climatologylastyear,percentmissing,overwrite
+# 
+# 
+# allowed terms:
+# variable: tasmax tasmin 
+# dataset: ERA5 - this has to be temperature dataset
+# domain: sadc sey com mau
+# basetime: seas mon dek pent 
+# index: hwTX95 hwTN95
+# indextype: clim
+# fracmissing: 0
+# overwrite: 0 or 1
+#
+
+ERA5,reanalysis,sadc,tasmax,day,TX95,clim,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,day,TN95,clim,1991,2020,0,0
+

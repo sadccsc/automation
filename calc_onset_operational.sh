@@ -13,5 +13,5 @@ ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
 
 #processing onset listfile. It's only one file, because there are relatively few onset indices, so all datasets can be processed at the same time
-$ABSDIR/calc_onset.sh calc_onset.lst
+$ABSDIR/calc_onset.sh calc_onset_operational.lst
 

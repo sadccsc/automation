@@ -25,7 +25,7 @@ dateformat="%Y%m%d"
 overwrite=False
 #this finds absolute path to this script
 abspath=os.path.dirname(os.path.abspath(__file__))
-domainsfile="{}/domains.json".format(abspath)
+domainsfile="{}/dictionaries/domains.json".format(abspath)
 
 
 ##################################################################

@@ -1,6 +1,7 @@
 ##########################################################################
 # list of indices to be calculated using calc_seasaccum.sh
-# this file is intended to calculate climatologies, so does not have to be used on regular basis
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
 # 
 # P.Wolski wolski@csag.uct.ac.za
 #
@@ -22,16 +23,14 @@
 # domain: sadc sey com mau
 # basetime: seas mon dek pent 
 # index: seasaccum
-# indextype: clim
+# indextype: index, absanom
 # firstclimyear,lastclimyear - these are what the name says
 # fracmissing: 0
 # overwrite: 0 or 1
 #
-# this is the list of indices to be calculated using calcindices.py
 
 
-CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,clim,1991,2020,0,1
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,clim,1991,2020,0,1
-#CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,clim,1991,2020,0,1
-
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,index,1991,2020,0,0
 

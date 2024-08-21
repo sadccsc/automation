@@ -9,52 +9,44 @@ else
 fi
 echo $today
 
+
+
+
 echo
 echo ---------------------------------------------------------------------------------------------
 echo syncing seasonal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
-rsync -avog maps/reanalysis/ERA5/seas/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
-rsync -avog maps/reanalysis/ERA5/seas/sadc/h*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
+# in the one below - the pattern has to be *_seas_* because otherwise climatology which has _seas-clim_ gets sent to wrong place
+rsync -avog  --exclude '*clim*' maps/observed/CHIRPS-v2.0-p05-merged/seas/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
+rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged$dset/seas/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal_climatology
+rsync -avog --exclude '*clim*' maps/reanalysis/ERA5/seas/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal
+rsync -avog  maps/reanalysis/ERA5/seas/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/seasonal_climatology
+
 
 echo
 echo ---------------------------------------------------------------------------------------------
 echo syncing monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/spi*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/onset*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/seasaccum/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-#rsync -avog  maps/observed/ARC2/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-#rsync -avog  maps/observed/TAMSAT-v3.1/mon/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog maps/reanalysis/ERA5/mon/sadc/T*/*_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-#rsync -avog --size-only maps/reanalysis/ERA5/mon/sadc/T*/*_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
-rsync -avog  maps/reanalysis/ERA5/mon/sadc/hw*/*_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog --exclude '*clim*' maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/mon/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly_climatology
+#rsync -avog --exclude '*clim*'  maps/observed/ARC2/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+#rsync -avog --exclude '*clim*' maps/observed/TAMSAT-v3.1/mon/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog --exclude '*clim*' maps/reanalysis/ERA5/mon/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog maps/reanalysis/ERA5/mon/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly_climatology
 
-
-echo
-echo ---------------------------------------------------------------------------------------------
 echo syncing dekadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-#rsync -avog  maps/observed/ARC2/dek/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-#rsync -avog  maps/observed/TAMSAT-v3.1/dek/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
+rsync -avog --exclude '*clim*' maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
+rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/dek/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal_climatology
+#rsync -avog --exclude '*clim*' maps/observed/ARC2/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+#rsync -avog --exclude '*clim*' maps/observed/TAMSAT-v3.1/mon/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog --exclude '*clim*' maps/reanalysis/ERA5/dek/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
+rsync -avog maps/reanalysis/ERA5/dek/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal_climatology
 
-rsync -avog  maps/reanalysis/ERA5/dek/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-rsync -avog  maps/reanalysis/ERA5/dek/sadc/hw*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/dekadal
-echo
-echo ---------------------------------------------------------------------------------------------
 echo syncing pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/R*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/SDII/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/C*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/onset*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/seasaccum/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/reanalysis/ERA5/pent/sadc/T*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
-rsync -avog  maps/reanalysis/ERA5/pent/sadc/hw*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
+rsync -avog --exclude '*clim*' maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
+rsync -avog  maps/observed/CHIRPS-v2.0-p05-merged/pent/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal_climatology
+#rsync -avog --exclude '*clim*' maps/observed/ARC2/mon/sadc/PRCPTOT/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+#rsync -avog --exclude '*clim*' maps/observed/TAMSAT-v3.1/mon/sadc/PRCPTOT/PRCPTOT_* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/monthly
+rsync -avog --exclude '*clim*' maps/reanalysis/ERA5/pent/sadc/*/* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal
+rsync -avog maps/reanalysis/ERA5/pent/sadc/*/*clim* ftpdatapush@${wbsgas}:/var/www/html/media/data/rccsadc/csc/pentadal_climatology
+exit
+
+

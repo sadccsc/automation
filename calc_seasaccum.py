@@ -31,6 +31,25 @@ currentdate=datetime.datetime.strptime(date, "%Y%m%d")
 day=str(currentdate.day).zfill(2)
 month=str(currentdate.month).zfill(2)
 year=str(currentdate.year)
+
+##################################################################
+
+def write_output():
+    if not os.path.exists(outputdir):
+        os.makedirs(outputdir)
+    output[index].attrs['units']=units
+    output[index].attrs['comment']=comment
+    history="{}    {}: anomaly calculated using {}".format(ds.history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), os.path.basename(sys.argv[0])),
+    output.attrs=ds.attrs
+    output.attrs["history"]=history
+    output.attrs["contributor_role"]="{}; calculated anomaly".format(ds.contributor_role)
+    output.to_netcdf(outputfile)
+    print("written {}".format(outputfile))
+    ds.close()
+
+
+
+
 ##################################################################
 #processing code below, no need to edit anything normally
 #
@@ -153,12 +172,11 @@ if attribute=="index":
                 else:
                     datadict[outputfile]=[files,firstdate,lastdate,nominaldate]
     else:
-        print("seasaccum processed only at monthly basetime. {} requested. exiting...".format(basetime))
+        print("seasaccum processed only at monthly,dekadal and pentadal basetimes. {} requested. exiting...".format(basetime))
         sys.exit()
 
 #############################################
 #    processing
-
 
     if len(datadict)>0:
         for outputfile in datadict.keys():
@@ -242,7 +260,7 @@ if attribute=="index":
 
 if attribute[-4:]=="anom":
 
-    outputdir=anomdir
+    outputdir=indexdir
 
 #########################
 
@@ -260,36 +278,38 @@ if attribute[-4:]=="anom":
         if os.path.exists(indexfile)==False:
              print("{}\n does not not exist.exiting...".format(indexfile))
              sys.exit()
-        climfile="{}/{}_{}-clim_{}_{}_{}-{}.nc".format(climdir,index,basetime,dataset,domain,climstartyear,climendyear)
+        climfile="{}/{}_{}-clim_{}_{}_{}-{}.nc".format(indexdir,index,basetime,dataset,domain,climstartyear,climendyear)
         if os.path.exists(climfile)==False:
              print("{}\n does not not exist.exiting...".format(climfile))
-         
+        print(indexfile)
+        print(climfile)
         ds=xr.open_dataset(indexfile)
         clim=xr.open_dataset(climfile)
 
         month=ds.time.dt.month
 
         if attribute=="absanom":
-            output=ds-clim[index].sel(month=month).data
+            output=ds[index]-clim[index].sel(month=month).data
             units=ds[index].units
             comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
 
         elif attribute=="relanom":
             climvalue=clim[index].sel(month=month).data
-            output=((ds-climvalue)/climvalue*100)-100
+            output=((ds[index]-climvalue)/climvalue*100)-100
             units="% of mean"
             comment="relative anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
 
         elif attribute=="percnormanom":
-            climvalue=clim[index].data
-            output=(ds-climvalue)/climvalue*100
+            climvalue=clim[index].sel(month=month).data
+            print(climvalue.shape)
+            output=(ds[index]/climvalue)*100
             units="% of mean"
             comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
 
         else:
             print("cannot calculate {}. exiting..".format(attribute))
             sys.exit()
-
+        output=output.to_dataset(name=index)
         write_output()
 
 
@@ -301,7 +321,7 @@ if attribute[-4:]=="anom":
 
 if attribute=="clim":
 
-    outputdir=climdir
+    outputdir=indexdir
 
     nyears=int(climendyear)-int(climstartyear)+1
 

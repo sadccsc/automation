@@ -60,7 +60,9 @@ def plot_map(_data,_cmap,_levels,_vmin,_vmax, _title, _annotation,_cbar_label,_t
             _data=_data.where(_data>_val)
     if _plotbackground:
         overlay.plot(ax=pl, color="0.7")
+
     m=_data.plot(cmap=_cmap, vmin=_vmin,vmax=_vmax, add_colorbar=False, norm=_norm)
+    #m=_data.plot()
 
     overlay.boundary.plot(ax=pl, linewidth=0.3, color="0.1")
 
@@ -69,8 +71,10 @@ def plot_map(_data,_cmap,_levels,_vmin,_vmax, _title, _annotation,_cbar_label,_t
     ax=fig.add_axes([0.82,0.25,0.02,0.5])
 
     if _levels is None:
+        cont=True
         cbar = fig.colorbar(m, cax=ax, label=_cbar_label, extend=_extend)
     else:
+        cont=True
         cbar = fig.colorbar(m, cax=ax,ticks=_levels, label=_cbar_label, extend=_extend)
 
     if _ticklabels is not None:
@@ -96,31 +100,44 @@ def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
         year=""
         
     if basetime=="seas":
-        if month==12:
-            yearexpr="{}-{}".format(year,int(year)+1)
-            year=int(year)+1
-            lastmonth=2
+        if attr=="clim":
+            yearexpr=""
         else:
-            yearexpr=str(year)
-            lastmonth=month+2
+            if month==12:
+                print(year)
+                yearexpr="{}-{}".format(year,int(year)+1)
+                year=int(year)+1
+                lastmonth=2
+            else:
+                yearexpr=str(year)
+                lastmonth=month+2
         timeexpr="{} {}".format(seasons[month-1],yearexpr)
-        #lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         #month=lastmonth
 
     if basetime=="mon":
         timeexpr="{} {}".format(months[month-1],year)
-        #lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
 
     if basetime=="dek":
         if day==21:
-            lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+            #this should find the last day of the month
+            if attr=="clim":
+                fakeyear=2024
+                lastday=(pd.DatetimeIndex([str(fakeyear)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+            else:
+                lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         else:
             lastday=int(day)+9
         timeexpr="{} to {} {} {}".format(day,lastday,months[month-1],year)
 
     if basetime=="pent":
         if day==26:
-            lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+            if attr=="clim":
+                fakeyear=2024
+                lastday=(pd.DatetimeIndex([str(fakeyear)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+            else:
+                lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         else:
             lastday=int(day)+4
         timeexpr="{} to {} {} {}".format(day,lastday,months[month-1],year)

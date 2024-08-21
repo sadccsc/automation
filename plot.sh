@@ -39,7 +39,7 @@ fi
 if [ $# -ge 2 ]; then
     startdate=$2
 else
-    startdate=$(date +"%Y%m%d" -d "$enddate - 1 months")
+    startdate=$(date +"%Y%m%d" -d "$enddate - 3 months")
 fi
 
 

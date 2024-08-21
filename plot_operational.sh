@@ -13,7 +13,4 @@ ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
 
 #downloading individual datasets
-$ABSDIR/plot.sh plot_chirps.lst
-$ABSDIR/plot.sh plot_era.lst
-#$ABSDIR/plot_arc.sh
-#$ABSDIR/plot_tamsat.sh
+$ABSDIR/plot.sh plot_operational.lst

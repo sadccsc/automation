@@ -37,22 +37,6 @@ year=str(currentdate.year)
 #this defines threhold for wet day in mm/day
 wetday=1
 
-#these are parametes for calculating only "standard" seasons
-seasparams={
-        1:[9,-1,11,-1],
-        2:[9,-1,11,-1],
-        3:[12,-1,2,0],
-        4:[12,-1,2,0],
-        5:[12,-1,2,0],
-        6:[3,0,5,0],
-        7:[3,0,5,0],
-        8:[3,0,5,0],
-        9:[6,0,8,0],
-        10:[6,0,8,0],
-        11:[6,0,8,0],
-        12:[9,0,11,0]
-        }
-
 #these are parametes for calculating all seasons
 # first_month,year_of_first_month,last_month,year_of_last_month
 seasparams={
