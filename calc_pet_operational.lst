@@ -1,0 +1,32 @@
+##########################################################################
+# list of pet indices to be calculated using calc_pet.sh
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# August 2024
+#
+##########################################################################
+#
+#
+# each line have to have entries in the following sequence: 
+# dataset,datatype,domain,variable,basetime,index,indextype,climatologyfirstyear,climatologylastyear,percentmissing,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ignored
+# 
+# 
+# allowed terms:
+# variable: tasmax tasmin 
+# dataset: ERA5 - this has to be temperature dataset
+# domain: sadc sey com mau
+# basetime: mon - the only one accepted
+# index: pet-tho pet-har, but only the first one works for the moment
+# indextype: index - this simply calculates index, anomalies etc. not implemented as this is intended to be used in spei calculations rather than independently
+# fracmissing: 0
+# overwrite: 0 or 1
+#
+
+ERA5,reanalysis,sadc,TG,mon,pet-tho,index,1991,2020,0,0
+
+
