@@ -72,12 +72,27 @@ vars=["tasmin","tasmax"]
 longnames=["minimum daily temperature","maximum daily temperature","mean daily temperature"]
 
 
+print("processing tasmin and tasmax...")
 if os.path.exists(outputfiletasmin) and overwrite==False:
     print("{} exists, and overwrite is off. skipping...".format(outputfiletasmin))
 else:
     print("processing {} and {}...".format(inputfile1, inputfile2))
     #reading mfdataset. 
-    ds=xr.open_mfdataset([inputfile1,inputfile2])
+    #this was used formerly, but now era5 has time dimension as valid_time, and this messes things up
+    #ds=xr.open_mfdataset([inputfile1,inputfile2])
+    #new code - from August 2024
+    ds1=xr.open_dataset(inputfile1)
+    ds2=xr.open_dataset(inputfile2)
+    if "valid_time" in ds1.coords:
+        ds1=ds1.rename({"valid_time":"time"})
+    if "valid_time" in ds2.coords:
+        ds2=ds2.rename({"valid_time":"time"})
+    if "expver" in ds1.variables:
+        ds1=ds1.drop("expver")
+    if "expver" in ds2.variables:
+        ds2=ds2.drop("expver")
+    ds=xr.concat([ds1,ds2], dim="time")
+
     #renaming dimensions for them to be CF complaiant for saving in netcdf format
     ds=ds.rename({"longitude":"lon","latitude":"lat"})
     #African subset processed here has 0.05deg resolution, which is a bit of overkill for regional level analyses
@@ -126,6 +141,8 @@ else:
 
         da.close()
 
+
+print("\nprocessing tas...")
 if os.path.exists(outputfiletas) and overwrite==False:
     print("{} exists, and overwrite is off. skipping...".format(outputfiletas))
 else:

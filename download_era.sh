@@ -53,8 +53,8 @@ while [ "$cdate" -le  $enddate ]; do
         echo $outdir/$outfile exists. checking file size...
         localfilesize=$(stat --format=%s $outdir/$outfile)
         echo localfilesize: $localfilesize 
-        if [ $localfilesize -gt 0 ];then
-            echo local file small. downloading again...
+        if [ $localfilesize -eq 0 ];then
+            echo local file size is 0. downloading again...
             dodownload=true
         else
             echo local file OK. skipping download

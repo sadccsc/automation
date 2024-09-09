@@ -87,7 +87,9 @@ for item in ${parameters[@]}; do
     indir=$rootdir/data/$datatype/$dataset/mon/$domain/$var
     indexdir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$index
 
-    if [ !
+    if [ ! -e $indexdir ]; then
+        mkdir -p $indexdir
+    fi
     #current date, i.e. date being processed
     cdate=$startdate
     echo start date: $cdate 

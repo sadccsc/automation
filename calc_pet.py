@@ -53,17 +53,20 @@ print("Requested: {} \nCalculating {}".format(index, attribute))
 
 
 
-if attribute=="index":
+if attribute in ["index", "indexall"]:
     #this sets up output directory for all basetimes
     
     outvar=index
-    outputfile="{}/{}_{}_{}_{}_{}{}.nc".format(outputdir,outvar,basetime,dataset,domain,year,month)
-    print(outputfile)
-    if os.path.exists(outputfile) and overwrite==False:
-        print("{} exists, and overwrite is off. skipping...".format(outputfile))
-        sys.exit()
-    else:
-        print("outputfile does not exist. processing...")
+
+
+    if attribute=="index":
+        outputfile="{}/{}_{}_{}_{}_{}{}.nc".format(outputdir,outvar,basetime,dataset,domain,year,month)
+        print(outputfile)
+        if os.path.exists(outputfile) and overwrite==False:
+            print("{} exists, and overwrite is off. skipping...".format(outputfile))
+            sys.exit()
+        else:
+            print("outputfile does not exist. processing...")
 
 
     inputfiles="{}/{}_{}_{}_{}_*.nc".format(inputdir,var,basetime,dataset,domain)
@@ -127,124 +130,56 @@ if attribute=="index":
 
 
     output=temp.transpose("time","lat","lon")
+
+    if attribute=="index":
+        output=output[-1:]
+
     output.name=outvar
-    output=output[-1:]
-    #output=output.expand_dims({"time":1})
-    output=output.to_dataset()
-    
-    units="mm/month"
-     
-    if "history" in ds.attrs:
-         history=ds.attrs["history"]
-    else:
-         history=""
-
-    if "contributor_role" in ds.attrs:
-         contributor_role=ds.attrs["contributor_role"]
-    else:
-         contributor_role=""
-
-
-
-    history="{}    {}: {} calculated using {}".format(history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), outvar, os.path.basename(sys.argv[0])),
-    output.attrs=ds.attrs
-
-    output[outvar].attrs['units']=units
-    output[outvar].attrs['comment']=comment
-    output.attrs["history"]=history
-    output.attrs["contributor_role"]="{}; calculated {}".format(contributor_role, outvar)
-    output.to_netcdf(outputfile)
-    print("written {}".format(outputfile))
-    ds.close()
-
-
-
-
-
-if attribute=="indexall":
-    #this sets up output directory for all basetimes
-    
-    outvar="spi{}".format(scale)
-
-    inputfiles="{}/{}_{}_{}_{}_*.nc".format(inputdir,var,basetime,dataset,domain)
-    ds=xr.open_mfdataset(inputfiles)
-    prmon=ds[var]
-    firstdate=pd.to_datetime(prmon.time[0].data)
-    lastdate=pd.to_datetime(prmon.time[-1].data)+pd.offsets.MonthEnd()
-
-    ndates=prmon.shape[0]
-    expecteddates=pd.date_range(firstdate,lastdate, freq="M")
-    expected=expecteddates.shape[0]
-    print(expecteddates)
-    print(firstdate,lastdate)
-    if ndates!=expected:
-        print("Missing dates in input data. got {}, expected {}. Cannot calculate. exiting...".format(ndates,expected))
-        print(firstdate,lastdate)
-        sys.exit()
-    else:
-        print("Got {} months of data, expected {}. Proceeding...".format(ndates,expected))
-
-    prmon=prmon.rio.write_crs("epsg:4326")
-    prmon.rio.set_spatial_dims("lon", "lat", inplace=True)
-
-    #resampling to lower resolution if needed
-    res=np.abs(prmon.rio.resolution())
-    ngrid=prmon.shape[1]*prmon.shape[2]
- 
-    if np.min(res)<minres and ngrid>maxngrid:
-        print("resampling to coarser grid...")
-        new_height=prmon.rio.height*res[1]/0.25
-        new_width=prmon.rio.width*res[1]/0.25
-        prmon = prmon.rio.reproject(prmon.rio.crs, shape=(int(new_height), int(new_width)), resampling=Resampling.bilinear)
-        prmon=prmon.rename({"x":"lon","y":"lat"})
-
-    fdatay=prmon.time[0].dt.year.data
-
-    print("Calculating spi...")
-
-    temp=xr.apply_ufunc(
-        get_spi,
-        prmon.load(),
-        [scale],
-        [fdatay],
-        [int(climstartyear)],
-        [int(climendyear)],
-        input_core_dims=[["time"],[],[],[],[]],
-        output_core_dims=[["time"]],
-        vectorize=True
-    )
-    output=temp.transpose("time","lat","lon")
-    output.name=outvar
-
-
     output=output.to_dataset()
 
-    units="-"
-    comment="reference period {}-{}".format(climstartyear,climendyear)
-
-    for date in output.time[scale:]:
-        month=date.dt.strftime("%m").data 
-        year=date.dt.strftime("%Y").data 
+    for date in output.time:
+        print("date", date)
+        tsoutput=output.sel(time=slice(date,date))
+        date=pd.to_datetime(date.data)
+        year=date.strftime("%Y")
+        month=date.strftime("%m")
         outputfile="{}/{}_{}_{}_{}_{}{}.nc".format(outputdir,outvar,basetime,dataset,domain,year,month)
+        print(outputfile)
         if os.path.exists(outputfile) and overwrite==False:
             print("{} exists, and overwrite is off. skipping...".format(outputfile))
-            sys.exit()
+            
         else:
             print("outputfile does not exist. processing...")
-       
-        history="{}    {}: {} calculated using {}".format(ds.history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), outvar, os.path.basename(sys.argv[0])),
 
-        outputmon=output.sel(time=date)
 
-        outputmon[outvar]=outputmon[outvar].expand_dims({"time":1})
-    
-        outputmon.attrs=ds.attrs
-        outputmon[outvar].attrs['units']=units
-        outputmon[outvar].attrs['comment']=comment
-        outputmon.attrs["history"]=history
-        outputmon.attrs["contributor_role"]="{}; calculated {}".format(ds.contributor_role, outvar)
-        outputmon.to_netcdf(outputfile)
-        print("written {}".format(outputfile))
+            
+            units="mm/month"
+             
+            if "history" in ds.attrs:
+                 history=ds.attrs["history"]
+            else:
+                 history=""
+
+            if "contributor_role" in ds.attrs:
+                 contributor_role=ds.attrs["contributor_role"]
+            else:
+                 contributor_role=""
+
+
+
+            history="{}    {}: {} calculated using {}".format(history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), outvar, os.path.basename(sys.argv[0])),
+            tsoutput.attrs=ds.attrs
+
+            tsoutput[outvar].attrs['units']=units
+            tsoutput[outvar].attrs['comment']=comment
+            tsoutput.attrs["history"]=history
+            tsoutput.attrs["contributor_role"]="{}; calculated {}".format(contributor_role, outvar)
+            tsoutput.to_netcdf(outputfile)
+            print("written {}".format(outputfile))
         ds.close()
+
+
+
+
 
 
