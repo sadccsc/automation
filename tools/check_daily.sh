@@ -8,13 +8,14 @@ echo
 echo $dset
 if [ -e incoming/${dset} ]; then
     file=`ls -t incoming/${dset}/day/ |head -1`
-    echo incoming: $file
+    echo incoming:
+    echo `ls -lst incoming/${dset}/day/$file`
 fi
 
 dset=(${dset/\// })
 dset=${dset[0]}
 
-file=`ls -t data/observed/${dset}/day/sadc/pr/ |head -1`
+file=`ls -lst data/observed/${dset}/day/sadc/pr/ |head -1`
 echo daily data: $file
 
 done

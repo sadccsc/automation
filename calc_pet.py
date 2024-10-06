@@ -72,12 +72,9 @@ if attribute in ["index", "indexall"]:
     inputfiles="{}/{}_{}_{}_{}_*.nc".format(inputdir,var,basetime,dataset,domain)
     ds=xr.open_mfdataset(inputfiles)
     tgmon=ds[var]
-    tgmon["time"]=pd.to_datetime(tgmon.time.data)+pd.offsets.MonthEnd()
+    datadates=(pd.to_datetime(tgmon.time.data)+pd.offsets.MonthEnd()).normalize()
+    tgmon["time"]=datadates
 
-    firstdate=pd.to_datetime("{}-{}-{}".format(climstartyear,month,1))-pd.offsets.YearBegin()
-    lastdate=pd.to_datetime("{}-{}-{}".format(climendyear,month,1))
-
-    lastdate=lastdate+pd.offsets.MonthEnd()
 
     currentdate=pd.to_datetime("{}-{}".format(year,str(month).zfill(2)))+pd.offsets.MonthEnd()
 
@@ -86,21 +83,22 @@ if attribute in ["index", "indexall"]:
         print(tgmon.time.data[-1])
         sys.exit()
 
-    test=tgmon.sel(time=slice(firstdate, currentdate))
-    ndates=test.shape[0]
-
-    expecteddates=pd.date_range(firstdate,currentdate, freq="M")
+    firstdatadate=datadates[0]
+    lastdatadate=datadates[-1]
+    expecteddates=pd.date_range(firstdatadate,lastdatadate, freq="M")
     expected=expecteddates.shape[0]
-    if ndates!=expected:
-        print("Missing dates in input data. got {}, expected {}. Cannot calculate. exiting...".format(ndates,expected))
-        print(firstdate,lastdate,currentdate)
+    ndatadates=tgmon.shape[0]
+
+    if ndatadates!=expected:
+        print("Missing dates in input data. got {}, expected {}. Cannot calculate. exiting...".format(ndatadates,expected))
+        print(firstdatadate,lastdatadate,currentdate)
         sys.exit()
     else:
-        print("Got {} months of data, expected {}. Proceeding...".format(ndates,expected))
-        print(firstdate,lastdate,currentdate)
-    
-    tgmon=tgmon.sel(time=slice(firstdate,currentdate))
-    tdmon=tgmon.rio.write_crs("epsg:4326")
+        print("Got {} months of data, expected {}. Proceeding...".format(ndatadates,expected))
+        print(firstdatadate,lastdatadate,currentdate)
+
+
+    tgmon=tgmon.rio.write_crs("epsg:4326")
     tgmon.rio.set_spatial_dims("lon", "lat", inplace=True)
 
 

@@ -79,8 +79,16 @@ for item in ${parameters[@]}; do
     #directory where processed data will be stored. this should not change even if root dir changes
     outdir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$index$scale
 	
+    if [ $index == "spei" ]; then
+        petdataset=${item[12]}
+        petdatatype=${item[13]}
+        petvar=${item[14]}
+        petindir=$rootdir/data/$petdatatype/$petdataset/$basetime/$domain/$petvar
+    fi
+
+
     if [ ! -e $outdir ]; then
-	mkdir -p $outdir
+   	    mkdir -p $outdir
     fi
 
     cdate=$startdate
@@ -103,6 +111,10 @@ for item in ${parameters[@]}; do
 
 
         args="$dataset $domain $var $cdate $basetime $index $scale $attribute $climstartyear $climendyear $fracmissing $overwrite"
+        if [ $index == "spei" ]; then
+            args="$args $petindir $petdataset $petvar"
+        fi
+
         echo calling:
         echo python $scriptdir/calc_drought.py $indir $outdir $args
         echo "--------------------"

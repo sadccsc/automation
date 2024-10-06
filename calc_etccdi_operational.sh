@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #
-# master script to call download scripts for individual datasets
+# master script to call etccdi calculation scripts
 #
 # P.Wolski
 # March 2023
@@ -12,6 +12,6 @@ ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
 source $ABSDIR/csisEnv
 
-#downloading individual datasets
+#calculating etccdi
 $ABSDIR/calc_etccdi.sh calc_etccdi_operational.lst
 

@@ -32,6 +32,8 @@ day=str(currentdate.day).zfill(2)
 month=str(currentdate.month).zfill(2)
 year=str(currentdate.year)
 
+wetday=1
+
 ##################################################################
 
 def write_output():
@@ -303,6 +305,11 @@ if attribute[-4:]=="anom":
             climvalue=clim[index].sel(month=month).data
             print(climvalue.shape)
             output=(ds[index]/climvalue)*100
+
+            sel=climvalue>wetday
+            output=output.where(sel,-9999)
+            output=output.where(~np.isnan(climvalue))
+
             units="% of mean"
             comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
 

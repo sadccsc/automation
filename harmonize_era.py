@@ -10,9 +10,8 @@ import pandas as pd
 import argparse
 
 
-parser = argparse.ArgumentParser(description='This script performs harmonization')
-parser.add_argument('inputfile1', help='full path to input1 file')
-parser.add_argument('inputfile2', help='full path to input2 file')
+parser = argparse.ArgumentParser(description='This script performs harmonization of hourly era files')
+parser.add_argument('inputfile', help='full path to input1 file')
 parser.add_argument('outputfiletasmin', help='full path to output netcdf file tasmin')
 parser.add_argument('outputfiletasmax', help='full path to output netcdf file tasmax')
 parser.add_argument('outputfiletas', help='full path to output netcdf file tas')
@@ -20,8 +19,7 @@ parser.add_argument('datestr', help='date in string format. Should be for exampl
 parser.add_argument('domain', help='domain for which subset is created and data are harmonized')
 args = parser.parse_args()
 
-inputfile1=args.inputfile1
-inputfile2=args.inputfile2
+inputfile=args.inputfile
 outputfiletasmin=args.outputfiletasmin
 outputfiletasmax=args.outputfiletasmax
 outputfiletas=args.outputfiletas
@@ -54,18 +52,13 @@ except:
 lonmin,lonmax,latmin,latmax=domains[domain]
 
 #stripping directory from file name
-inputfilename1=os.path.basename(inputfile1)
-inputfilename2=os.path.basename(inputfile2)
-inputdirname=os.path.dirname(inputfile1)
+inputfilename=os.path.basename(inputfile)
+inputdirname=os.path.dirname(inputfile)
 
 #creating datetime object from date string
 filedate=datetime.datetime.strptime(datestr, dateformat)
-if not os.path.exists(inputfile1):
-    print("inputfile {} does not exist. Exiting...".format(inputfile1))
-    sys.exit()
-
-if not os.path.exists(inputfile2):
-    print("inputfile {} does not exist. Exiting...".format(inputfile2))
+if not os.path.exists(inputfile):
+    print("inputfile {} does not exist. Exiting...".format(inputfile))
     sys.exit()
 
 vars=["tasmin","tasmax"]
@@ -76,22 +69,18 @@ print("processing tasmin and tasmax...")
 if os.path.exists(outputfiletasmin) and overwrite==False:
     print("{} exists, and overwrite is off. skipping...".format(outputfiletasmin))
 else:
-    print("processing {} and {}...".format(inputfile1, inputfile2))
+    print("processing {}...".format(inputfile))
     #reading mfdataset. 
     #this was used formerly, but now era5 has time dimension as valid_time, and this messes things up
     #ds=xr.open_mfdataset([inputfile1,inputfile2])
     #new code - from August 2024
-    ds1=xr.open_dataset(inputfile1)
-    ds2=xr.open_dataset(inputfile2)
-    if "valid_time" in ds1.coords:
-        ds1=ds1.rename({"valid_time":"time"})
-    if "valid_time" in ds2.coords:
-        ds2=ds2.rename({"valid_time":"time"})
-    if "expver" in ds1.variables:
-        ds1=ds1.drop("expver")
-    if "expver" in ds2.variables:
-        ds2=ds2.drop("expver")
-    ds=xr.concat([ds1,ds2], dim="time")
+    ds=xr.open_dataset(inputfile)
+    if "valid_time" in ds.coords:
+        ds=ds.rename({"valid_time":"time"})
+    if "expver" in ds.variables:
+        ds=ds.drop("expver")
+    if "number" in ds.variables:
+        ds=ds.drop("number")
 
     #renaming dimensions for them to be CF complaiant for saving in netcdf format
     ds=ds.rename({"longitude":"lon","latitude":"lat"})
@@ -105,10 +94,7 @@ else:
 
     da=ds["t2m"]-273.15
 
-    #shifting time by hour ahead
-    newtime=pd.to_datetime(da.time.data)-pd.offsets.Hour(1)
-    da["time"]=newtime
-    print(da)
+
     tasmin=da.resample(time="D").min().sel(time=slice(datestr,datestr))
     tasmax=da.resample(time="D").max().sel(time=slice(datestr,datestr))
     alldata=[tasmin,tasmax]

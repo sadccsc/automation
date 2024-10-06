@@ -69,6 +69,7 @@ while [ "$cdate" -le  $enddate ]; do
         python3 download_era.py tas $year $month $day hour sadc $outdir/$outfile
     fi
     cdate=$(date +"%Y%m%d" -d "$cdate + 1 day")
+    #exit
 done
 echo done
 

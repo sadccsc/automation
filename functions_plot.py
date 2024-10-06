@@ -79,8 +79,10 @@ def plot_map(_data,_cmap,_levels,_vmin,_vmax, _title, _annotation,_cbar_label,_t
 
     if _ticklabels is not None:
         cbar.ax.set_yticklabels(_ticklabels)
-        cbar.ax.tick_params(labelsize=8)
+        cbar.ax.tick_params(labelsize=7)
         cbar.ax.tick_params(size=0)   
+        cbar.set_label(_cbar_label, labelpad=-10)
+
     logoimg = plt.imread(_logofile)
     im = OffsetImage(logoimg, zoom=0.3)
     ab = AnnotationBbox(im, (0.99, 0.99), xycoords=pl.transAxes, box_alignment=(1,1), frameon=False)
@@ -88,7 +90,7 @@ def plot_map(_data,_cmap,_levels,_vmin,_vmax, _title, _annotation,_cbar_label,_t
 
     pl.text(0,-0.01,_annotation,fontsize=6, transform=pl.transAxes, va="top")
 
-    plt.subplots_adjust(bottom=0.06,top=0.9,right=0.8,left=0.05)
+    plt.subplots_adjust(bottom=0.1,top=0.9,right=0.8,left=0.05)
     if _filename:
         plt.savefig(_filename, dpi=300)
 #    plt.show()
@@ -102,22 +104,24 @@ def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
     if basetime=="seas":
         if attr=="clim":
             yearexpr=""
+            lastmonth=month
         else:
-            if month==12:
+            if month>=11:
                 print(year)
                 yearexpr="{}-{}".format(year,int(year)+1)
                 year=int(year)+1
-                lastmonth=2
+                lastmonth=month-11+1
             else:
                 yearexpr=str(year)
                 lastmonth=month+2
         timeexpr="{} {}".format(seasons[month-1],yearexpr)
-        lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        print(lastmonth)
+        #lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         #month=lastmonth
 
     if basetime=="mon":
         timeexpr="{} {}".format(months[month-1],year)
-        lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        #lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
 
     if basetime=="dek":
         if day==21:

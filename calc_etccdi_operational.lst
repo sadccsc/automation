@@ -53,6 +53,7 @@ ERA5,reanalysis,sadc,tasmin,seas,TNn,index,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,seas,TX,index,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,seas,TX,absanom,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,seas,TXx,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TG,index,1991,2020,0,0
 
 
 #monthly
@@ -77,6 +78,7 @@ ERA5,reanalysis,sadc,tasmax,mon,TX,index,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,mon,TX,absanom,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmin,mon,TNn,index,1991,2020,0,0
 ERA5,reanalysis,sadc,tasmax,mon,TXx,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,mon,TG,index,1991,2020,0,0
 
 
 #dekadal

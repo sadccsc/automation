@@ -63,10 +63,20 @@ def write_output():
         os.makedirs(outputdir)
     output[index].attrs['units']=units
     output[index].attrs['comment']=comment
-    history="{}    {}: anomaly calculated using {}".format(ds.history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), os.path.basename(sys.argv[0])),
+
+    if "history" in ds.attrs:
+        history="{}    {}: anomaly calculated using {}".format(ds.history,datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), os.path.basename(sys.argv[0])),
+    else:
+        history="{}: anomaly calculated using {}".format(datetime.datetime.today().strftime('%Y-%m-%d %H:%M:%S'), os.path.basename(sys.argv[0])),
+        
     output.attrs=ds.attrs
     output.attrs["history"]=history
-    output.attrs["contributor_role"]="{}; calculated anomaly".format(ds.contributor_role)
+    if "contributor_role" in ds.attrs:
+        contributor_role="{}; calculated anomaly".format(ds.contributor_role)
+    else:
+        contributor_role="calculated anomaly"
+
+    output.attrs["contributor_role"]=contributor_role
     output.to_netcdf(outputfile)
     print("written {}".format(outputfile))
     ds.close()
@@ -354,8 +364,14 @@ if attribute=="index":
                     output=output.expand_dims(time=[ds.time[0].values])
                     units="K"
                     comment="ETCCDI index"
-                elif  index=="TX":
+                elif index=="TX":
                     print("calculating TX")
+                    output=ds[var].mean("time")
+                    output=output.expand_dims(time=[ds.time[0].values])
+                    units="K"
+                    comment="ETCCDI index"
+                elif index=="TG":
+                    print("calculating TG")
                     output=ds[var].mean("time")
                     output=output.expand_dims(time=[ds.time[0].values])
                     units="K"
@@ -445,6 +461,8 @@ if attribute[-4:]=="anom":
         elif attribute=="percnormanom":
             climvalue=clim[index].data
             output=(ds/climvalue)*100
+            if index=="PRCPTOT":
+                output[climvalue<wetday]=-9999
             units="% of mean"
             comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
         else:
@@ -491,6 +509,8 @@ if attribute[-4:]=="anom":
         elif attribute=="quantanom":
             units="percentile"
             comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
+            print("calculating quantanom is not ready yet. exiting")
+            sys.exit()
 
         elif attribute=="relanom":
             climvalue=clim[index].sel(month=month).data
@@ -501,6 +521,11 @@ if attribute[-4:]=="anom":
         elif attribute=="percnormanom":
             climvalue=clim[index].sel(month=month).data
             output=(ds/climvalue)*100
+            if index=="PRCPTOT":
+                sel=climvalue>wetday
+                output=output.where(sel,-9999)
+                output=output.where(~np.isnan(climvalue))
+
             units="% of mean"
             comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
         else:
@@ -535,13 +560,17 @@ if attribute[-4:]=="anom":
 
         if attribute=="absanom":
             output=ds-clim[index].sel(month=month).data
-            units=ds[index].units
+            if "units" in ds[index].attrs:
+                units=ds[index].units
+            else:
+                units=""
             comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
 
         elif attribute=="quantanom":
             units="percentile"
             comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
-
+            print("calculating quantanom is not ready yet. exiting")
+            sys.exit()
         elif attribute=="relanom":
             climvalue=clim[index].sel(month=month).data
             output=((ds-climvalue)/climvalue*100)
@@ -551,6 +580,12 @@ if attribute[-4:]=="anom":
         elif attribute=="percnormanom":
             climvalue=clim[index].sel(month=month).data
             output=(ds/climvalue)*100
+            if index=="PRCPTOT":
+                sel=climvalue>wetday
+                output=output.where(sel,-9999)
+                output=output.where(~np.isnan(climvalue))
+                #print(output)
+                #sys.exit()
             units="% of mean"
             comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
 
@@ -593,6 +628,8 @@ if attribute[-4:]=="anom":
                         units="percentile"
                         comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
 
+                        print("calculating quantanom is not ready yet. exiting")
+                        sys.exit()
                     elif attribute=="relanom":
                         climvalue=clim[index].sel(dekad=dekad).data
                         output=((ds-climvalue)/climvalue*100)
@@ -602,6 +639,11 @@ if attribute[-4:]=="anom":
                     elif attribute=="percnormanom":
                         climvalue=clim[index].sel(dekad=dekad).data
                         output=(ds/climvalue)*100
+                        if index=="PRCPTOT":
+                            sel=climvalue>wetday
+                            output=output.where(sel,-9999)
+                            output=output.where(~np.isnan(climvalue))
+
                         units="% of mean"
                         comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
 
@@ -645,6 +687,7 @@ if attribute[-4:]=="anom":
                         comment="absolute anomaly wrt. {}-{} climatology".format(climstartyear,climendyear)
                         print("calculating quantanom is not ready yet. exiting")
                         sys.exit()
+
                     elif attribute=="relanom":
                         climvalue=clim[index].sel(pentad=pentad).data
                         output=((ds-climvalue)/climvalue*100)
@@ -654,6 +697,10 @@ if attribute[-4:]=="anom":
                     elif attribute=="percnormanom":
                         climvalue=clim[index].sel(pentad=pentad).data
                         output=(ds/climvalue)*100
+                        if index=="PRCPTOT":
+                            sel=climvalue>wetday
+                            output=output.where(sel,-9999)
+                            output=output.where(~np.isnan(climvalue))
                         units="% of mean"
                         comment="percent of normal wrt. {}-{} climatology".format(climstartyear,climendyear)
 
@@ -698,7 +745,7 @@ if attribute=="clim":
             print("no files found. exiting...")
             sys.exit()
 
-        ds=xr.open_mfdataset(searchpath)
+        ds=xr.open_mfdataset(searchpath, coords="minimal")
 
         temp=ds.sel(time=slice(climstartyear,climendyear))
         targetperiods=int(nyears*(1-fracmissing))
@@ -722,7 +769,7 @@ if attribute=="clim":
             print("no files found. exiting...")
             sys.exit()
 
-        ds=xr.open_mfdataset(searchpath)
+        ds=xr.open_mfdataset(searchpath, coords="minimal")
 
         temp=ds.sel(time=slice(climstartyear,climendyear))
         targetperiods=int(nyears*4*(1-fracmissing))
@@ -745,7 +792,7 @@ if attribute=="clim":
             print("no files found. exiting...")
             sys.exit()
 
-        ds=xr.open_mfdataset(searchpath)
+        ds=xr.open_mfdataset(searchpath, coords="minimal")
 
         temp=ds.sel(time=slice(climstartyear,climendyear))
         targetperiods=int(nyears*12*(1-fracmissing))
@@ -769,7 +816,7 @@ if attribute=="clim":
             print("no files found. exiting...")
             sys.exit()
 
-        ds=xr.open_mfdataset(searchpath)
+        ds=xr.open_mfdataset(searchpath, coords="minimal")
 
         temp=ds.sel(time=slice(climstartyear,climendyear))
 
@@ -797,7 +844,7 @@ if attribute=="clim":
         if nfiles==0:
             print("no files found. exiting...")
             sys.exit()
-        ds=xr.open_mfdataset(searchpath)
+        ds=xr.open_mfdataset(searchpath, coords="minimal")
 
         temp=ds.sel(time=slice(climstartyear,climendyear))
 

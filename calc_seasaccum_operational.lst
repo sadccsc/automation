@@ -33,4 +33,7 @@
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,index,1991,2020,0,0
 CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,index,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,seasaccum,percnormanom,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,dek,seasaccum,percnormanom,1991,2020,0,0
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,pent,seasaccum,percnormanom,1991,2020,0,0
 

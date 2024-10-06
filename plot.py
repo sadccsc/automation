@@ -31,6 +31,7 @@ month=str(currentdate.month).zfill(2)
 year=str(currentdate.year)
 yearval=currentdate.year
 
+wetday=1
 
 months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 seasons=["JFM","FMA","MAM","AMJ","MJJ","JJA","JAS","ASO","SON","OND","NDJ","DJF"]
@@ -44,11 +45,16 @@ varnames={
     "Rx1day": "maximum 1 day rainfall",
     "Rx5day": "maximum 5 day rainfall",
     "SDII": "mean daily rainfall intensity",
-    "spi1": "1-month Standard Precipitation Index (SPI)",
-    "spi3": "3-month Standard Precipitation Index (SPI)",
-    "spi6": "6-month Standard Precipitation Index (SPI)",
-    "spi12": "12-month Standard Precipitation Index (SPI)",
-    "spi36": "36-month Standard Precipitation Index (SPI)",
+    "spi1": "1-month Standardized Precipitation Index (SPI)",
+    "spi3": "3-month Standardized Precipitation Index (SPI)",
+    "spi6": "6-month Standardized Precipitation Index (SPI)",
+    "spi12": "12-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
+    "spi36": "36-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
+    "spei1": "1-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
+    "spei3": "3-month SPEI index",
+    "spei6": "6-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
+    "spei12": "12-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
+    "spei36": "36-month Standardized Precipitation-Evapotranspiration Index (SPEI)",
     "CDD": "maximum consecutive dry days",
     "CWD": "maximum consecutive wet days",
     "R1mm": "number of days with rainfall > 1mm",
@@ -85,6 +91,11 @@ varcategories={
     "spi6": "spi",
     "spi12": "spi",
     "spi36": "spi",
+    "spei1": "spi",
+    "spei3": "spi",
+    "spei6": "spi",
+    "spei12": "spi",
+    "spei36": "spi",
     "TNn": "temperature",
     "TN": "temperature",
     "TX": "temperature",
@@ -328,48 +339,71 @@ for day,datafile in datafiles:
 
             #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             #colormaps
+            #defined separately for different varcat value, attr values and var values
 
             if varcat=="precipitation":
 
                 if attr=="relanom":
                     vmin=10
                     vmax=190
+                    extend="both"
                     levels = [10,30,50,70,90,110,130,150,170,190]
                     cmap_rb = plt.get_cmap('BrBG')
                     cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
                     cols[5]=(1,1,1,1)
-                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                     ticklevels=None
                     ticklabels=None
                     units="% of long-term mean"
-                    extend="both"
 
                 elif attr=="absanom":
                     vmin=-100
                     vmax=100
-                    levels = np.linspace(vmin,vmax,11)    
+                    extend="both"
+                    levels = np.linspace(vmin,vmax,21)    
                     cmap_rb = plt.get_cmap('BrBG')
                     cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
-                    cols[5]=(1,1,1,1)
-                    cols[6]=(1,1,1,1)
-                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
+                    cols[10]=(1,1,1,1)
+                    cols[11]=(1,1,1,1)
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                     levels=None
                     ticklabels=None
                     units="mm"
-                    extend="both"
 
                 elif attr=="percnormanom":
-                    vmin=10
-                    vmax=190
-                    levels = [10,30,50,70,90,110,130,150,170,190]
-                    cmap_rb = plt.get_cmap('BrBG')
-                    cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
-                    cols[5]=(1,1,1,1)
-                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
-                    ticklevels=None
-                    ticklabels=None
-                    units="% of long-term mean"
-                    extend="both"
+                    if var=="PRCPTOT":
+                        extend="max"
+                        vmin,vmax=-10000,200
+                        seq=np.arange(0,205,10).astype(int)
+                        seq=[0,10,30,50,70,90,110,130,150,170,190,200]
+                        cmap_rb = plt.get_cmap('BrBG')
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(seq)))
+                        colorlist=list(cols)
+
+                        #colorlist=[plt.get_cmap('BrBG', 100)(x) for x in seq]
+                        colorlist[5]="white"
+                        colorlist=["lightyellow"]+colorlist
+                        levels = [-10000]+list(seq)
+                        cmap, norm = colors.from_levels_and_colors(levels, colorlist, extend=extend)
+                        ticklevels = levels
+                        ticklabels=["dry\nclimato-\nlogy"]+[str(x) for x in list(seq)]
+                        units="% of long-term mean"
+                        plotbackground=True
+                        annotation="{}\nRegions where climatological rainfall is less than {}mm are masked out".format(annotation,wetday)
+
+                    else:
+                        vmin=10
+                        vmax=190
+                        extend="both"
+                        levels = [10,30,50,70,90,110,130,150,170,190]
+                        cmap_rb = plt.get_cmap('BrBG')
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
+                        cols[5]=(1,1,1,1)
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
+                        ticklevels=None
+                        ticklabels=None
+                        units="% of long-term mean"
+
 
                 elif attr=="quantanom":
                     #custom color map for quantile anomaly
@@ -385,55 +419,69 @@ for day,datafile in datafiles:
                     extend="neither"
 
                 else:
+                    #this is when index is requested
+
                     if var=="PRCPTOT":
+                        extend="max"
                         vmin=0
-                        vmax=300
-                        levels = [0,1,10,25,50,75,150,225,300]
-                        #original CSC
-                        cols=["#FFFFFF","#C6C618","#FEFE00","#00FF00","#10FAF7","#0F17FF","#F273E4","#841F89","#590059"]
-                        #original BOM
+                        #this self-adjusts to the nearest 100
+                        #high value
+                        highval=np.nanpercentile(data, 95)
+                        #vmax will be highest 100 that is less than the highval
+                        vmax=int(highval/100)*100
+                        #this just makes sure the max value is not 0, It has to be at least 100
+                        if vmax<100:
+                            vmax=100
+
+                        levels = np.linspace(vmin,vmax,11)    
+                        cmap_rb = plt.get_cmap("YlGnBu")
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels))) #ncolors is same as levels if extend is one sided, i.e. max or min 
+
+                        #this is original CSC colour map
+                        #levels = [0,1,10,25,50,75,150,225,300]
+                        #cols=["#FFFFFF","#C6C618","#FEFE00","#00FF00","#10FAF7","#0F17FF","#F273E4","#841F89","#590059"]
+
+                        #thisis original BOM colour map
                         #cols=["#FFFFFF","#FEBE59","#FEAC00","#FEFE00","#B2FE00","#4CFE00","#00E499","#00A4FE","#3E3EFE","#B200FE","#FE00FE","#FE4C9B"]
-                        #reduced BOM
+
+                        #this is a reduced BOM map that fits the csc categories
                         #cols=["#FFFFFF","#FEFE00","#B2FE00","#4CFE00","#00E499","#00A4FE","#3E3EFE","#B200FE","#FE4C9B"]
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                         ticklevels=None
                         ticklabels=None 
                         units="mm"
-                        extend="max"
 
                     if var=="Rx1day":
                         vmin=0
-                        vmax=100
-                        levels = [0,25,50,70,80,90,100]
+                        vmax=150
+                        levels = [0,25,50,70,80,90,100,150]
+                        extend="max"
                         cmap_rb = plt.get_cmap('YlGnBu')
                         cols = cmap_rb(np.linspace(0, 1, len(levels)))
                         cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                         ticklevels=None
                         ticklabels=None 
                         units="mm/day"
-                        extend="max"
 
                     if var=="Rx5day":
                         vmin=0
                         vmax=200
                         levels = [0,25,50,70,80,90,100,200]
+                        extend="max"
                         cmap_rb = plt.get_cmap('YlGnBu')
                         cols = cmap_rb(np.linspace(0, 1, len(levels)))
                         cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                         ticklevels=None
                         ticklabels=None 
                         units="mm/day"
-                        extend="max"
 
-
-                    params={"mon":[30,np.arange(0,31,3)],"dek":[10,range(11)],"pent":[5,range(6)],"seas":[90, np.arange(0,90,10)]}
 
                     if var=="CDD":
-                        vmax=params[basetime][0]
                         vmin=0
-                        mx=np.nanmax(data)
+                        extend="max"
                         if basetime=="mon":
                             vmax=30
                             levels=np.arange(0,31,3)
@@ -448,17 +496,16 @@ for day,datafile in datafiles:
                             levels=np.arange(0,91,10)
 
                         cmap_rb = plt.get_cmap('turbo')
-                        cols = cmap_rb(np.linspace(0.3, 0.8, len(levels)))
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                         ticklevels=levels
                         ticklabels=None 
                         units="days"
-                        extend="max"
 
                     if var=="CWD":
-                        vmax=params[basetime][0]
                         vmin=0
-                        mx=np.nanmax(data)
+                        extend="max"
+                        #vmaxes are reduced for monthly and seasonal as wet days will never be entire month or season
                         if basetime=="mon":
                             vmax=20
                             levels=np.arange(0,21,2)
@@ -469,65 +516,118 @@ for day,datafile in datafiles:
                             vmax=5
                             levels=np.arange(0,6,1)
                         else:
-                            vmax=90
-                            levels=np.arange(0,91,10)
+                            vmax=30
+                            levels=np.arange(0,31,3)
 
                         cmap_rb = plt.get_cmap('turbo_r')
-                        cols = cmap_rb(np.linspace(0.2, 0.7, len(levels)))
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
                         cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                         ticklevels=levels
                         ticklabels=None 
                         units="days"
+
+                    if var =="R20mm":
+
+                        vmin=0
                         extend="max"
 
-                    if var in ["R10mm","R20mm"]:
-                        vmax=10
-                        levels=range(11)
-                        vmin=0
+                        if basetime=="mon":
+                            vmax=10
+                            levels=np.arange(0,11,2)
+                        elif basetime=="dek":
+                            vmax=10
+                            levels=np.arange(0,11,1)
+                        elif basetime=="pent":
+                            vmax=5
+                            levels=np.arange(0,6,1)
+                        else:
+                            vmax=20
+                            levels=np.arange(0,21,2)
+
                         cmap_rb = plt.get_cmap('YlGnBu')
-                        cols = cmap_rb(np.linspace(0.2, 0.9, len(levels)))
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
                         cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
-                        ticklevels=None
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
+                        ticklevels=levels
                         ticklabels=None 
                         units="days"
+
+                    if var =="R10mm":
+
+                        vmin=0
                         extend="max"
+
+                        if basetime=="mon":
+                            vmax=10
+                            levels=np.arange(0,11,1)
+                        elif basetime=="dek":
+                            vmax=10
+                            levels=np.arange(0,11,1)
+                        elif basetime=="pent":
+                            vmax=5
+                            levels=np.arange(0,6,1)
+                        else:
+                            vmax=30
+                            levels=np.arange(0,31,3)
+
+                        cmap_rb = plt.get_cmap('YlGnBu')
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
+                        cols[0]=(1,1,1,1)
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
+                        ticklevels=levels
+                        ticklabels=None 
+                        units="days"
+
+
 
                     if var == "R1mm":
-                        maxdays={"mon":[30,[0,3,6,9,12,15,18,21,24,27,30]],"dek":[10,range(11)],"pent":[5,range(6)],"seas":[90, np.arange(0,91,10)]}
-                        vmax=maxdays[basetime][0]
-                        levels=maxdays[basetime][1]
                         vmin=0
+                        extend="max"
+                        if basetime=="mon":
+                            vmax=30
+                            levels=np.arange(0,31,3)
+                        elif basetime=="dek":
+                            vmax=10
+                            levels=np.arange(0,11,1)
+                        elif basetime=="pent":
+                            vmax=5
+                            levels=np.arange(0,6,1)
+                        else:
+                            vmax=50
+                            levels=np.arange(0,51,5)
+
                         cmap_rb = plt.get_cmap('YlGnBu')
-                        cols = cmap_rb(np.linspace(0.2, 0.9, len(levels)))
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
                         cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
-                        ticklevels=None
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
+                        ticklevels=levels
                         ticklabels=None 
                         units="days"
-                        extend="max"
 
                     if var=="SDII":
-                        mx=np.nanmean(data)
-                        print("mx",mx)
-                        vmax=20
-                        levels=np.arange(0,21,2)
                         vmin=0
-                        cmap_rb = plt.get_cmap('YlGnBu')
-                        cols = cmap_rb(np.linspace(0.2, 0.9, len(levels)))
-                        cols[0]=(1,1,1,1)
-                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend="max")
-                        ticklevels=levels
-                        ticklabels=levels
-                        units="mm/day"
                         extend="max"
 
+                        highval=np.nanpercentile(data, 95)
+                        #vmax will be highest 10 that is less than the highval
+                        vmax=int(highval/10)*10
+                        #this just makes sure the max value is not 0, It has to be at least 100
+                        if vmax<10:
+                            vmax=10
 
-
+                        levels = np.linspace(vmin,vmax,11)    
+                        cmap_rb = plt.get_cmap('YlGnBu')
+                        cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)))
+                        cols[0]=(1,1,1,1)
+                        cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
+                        ticklevels=levels
+                        ticklabels=None
+                        units="mm/day"
 
                         
             if varcat=="onset":
+                #this is for anomaly
                 if attr[-4:]=="anom":
                     seq=np.linspace(10,90,10).astype(int)
                     colorlist=[plt.get_cmap('BrBG_r', 100)(x) for x in seq]
@@ -542,6 +642,7 @@ for day,datafile in datafiles:
                     extend="neither"
                     plotbackground=True
                 else:
+                #this is for index
                     vmin,vmax=-100,180
                     cols=["#EEEEEE","#224E96","#2E67AF","#4284C4","#59A3D7","#73BAE5","#8ECFF0","#8BBD9F","#A3C38F","#CBE0B7","#EAEFAA","#FBE884","#FDD76D","#FAB446","#F3692A","#E95029","#DE3828", "#C91E26","#B01A20","#921519"]
                     levels = [-100,0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180]
@@ -550,6 +651,8 @@ for day,datafile in datafiles:
                     ticklabels=["not\nstarted", 'Sep', 'Oct', 'Nov', 'Dec', 'Jan',"Feb"]
                     units="dekad"
                     extend="neither"
+
+
 
             if varcat=="temperature":
                 units="deg C"
@@ -570,15 +673,16 @@ for day,datafile in datafiles:
                         vmax=25
                     
                     span=20
-                    ncat=11
+                    ncat=21
                     if rnge>20:
                         span=30
-                        ncat=16 
+                        ncat=16
+
                     vmin=vmax-span
 
                     levels = np.linspace(vmin,vmax,ncat)
                     cmap_rb = plt.get_cmap('RdBu_r')
-                    cols = cmap_rb(np.linspace(0, 1, len(levels)+1))
+                    cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
                     cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
                     ticklevels=None
                     ticklabels=None
@@ -586,26 +690,20 @@ for day,datafile in datafiles:
 
                 if attr=="absanom":
                     #absolute anomaly
-                    if q1<-1 or q99>4:
-                        vmin=-4
-                        vmax=4
-                        ncat=9
-                        blank=[4,5]
-                    else:
-                        vmin=-3
-                        vmax=3
-                        ncat=7
-                        blank=[3,4]
-
-                    uneven_levels = np.linspace(vmin,vmax,ncat)
+                    vmin=-4
+                    vmax=4
+                    levels=np.arange(vmin,vmax+0.1,0.5)
+                    extend="both"
                     cmap_rb = plt.get_cmap('RdBu_r')
-                    cols = cmap_rb(np.linspace(0, 1, len(uneven_levels)+1))
-                    for b in blank:
-                        cols[b]=(1,1,1,1)            
-                    cmap, norm = colors.from_levels_and_colors(uneven_levels, cols, extend="both")
+                    cols = cmap_rb(np.linspace(0, 1, len(levels)+1))
+                    cols[8]=(1,1,1,1)            
+                    cols[9]=(1,1,1,1)
+                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend=extend)
                     ticklevels=None
                     ticklabels=None
                     extend="both"
+
+
                 if attr=="clim":
                     if q1<10:
                         vmin=5
@@ -626,7 +724,7 @@ for day,datafile in datafiles:
                     extend="both"
 
 
-            if varcat=="spi":
+            if varcat in ["spi","spei"]:
                 vmin=-4
                 vmax=4      
                 levels = [-4,-3,-2,-1,1,2,3,4]        
@@ -674,9 +772,13 @@ for day,datafile in datafiles:
                 
             if varcat=="seasaccum":
                 if attr=="index":
-                    print(varcat)
+                    highval=np.nanpercentile(data, 95)
+                    vmax=int(highval/100)*100
                     vmin=0
-                    vmax=500    
+                    if vmax<100:
+                        vmax=100
+                    print(highval, vmax)
+
                     levels = np.linspace(vmin,vmax,11)
                     cmap_rb = plt.get_cmap('YlGnBu')
                     cols = cmap_rb(np.linspace(0, 1, len(levels)))
@@ -701,18 +803,25 @@ for day,datafile in datafiles:
                     extend="both"
 
                 elif attr=="percnormanom":
-                    vmin=10
-                    vmax=190
-                    levels = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190]
+                    extend="max"
+                    vmin,vmax=-100000,200
+                    seq=np.arange(0,205,10).astype(int)
+                    seq=[0,10,30,50,70,90,110,130,150,170,190,200]
                     cmap_rb = plt.get_cmap('BrBG')
-                    cols = cmap_rb(np.linspace(0.1, 0.9, len(levels)+1))
-                    cols[9]=(1,1,1,1)
-                    cols[10]=(1,1,1,1)
-                    cmap, norm = colors.from_levels_and_colors(levels, cols, extend="both")
-                    ticklevels=None
-                    ticklabels=None
+                    cols = cmap_rb(np.linspace(0.1, 0.9, len(seq)))
+                    colorlist=list(cols)
+
+                    colorlist[5]="white"
+                    colorlist=["0.7","lightyellow"]+colorlist
+                    levels = [-100000,-10000]+list(seq)
+                    cmap, norm = colors.from_levels_and_colors(levels, colorlist, extend=extend)
+                    ticklevels = [-50000,-5000]+list(seq)
+                    ticklabels=["not considered","normally dry"]+[str(x) for x in list(seq)]
                     units="% of long-term mean"
-                    extend="both"
+                    plotbackground=True
+                    annotation="{}\nRegions where climatological rainfall is less than {}mm are masked out".format(annotation,wetday)
+                    annotation="{}\nCalculated only for {} rainfall regime".format(annotation, regime)
+
 
 
             plot_map(data,

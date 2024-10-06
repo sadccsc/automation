@@ -61,18 +61,21 @@ times=["00:00",
        "23:00"]
 
 requestDict={
-    'product_type':"reanalysis",
-    'variable':cds_variable_name,
-    'year':str(year),
-    'month':str(month),
-    'day':str(day),
+    'product_type':["reanalysis"],
+    'variable':[cds_variable_name],
+    'year':[str(year)],
+    'month':[str(month)],
+    'day':[str(day)],
     'area': domain,
     'time': times,
-    'format':fileformat
+    'data_format':fileformat,
+    'download_format':"unarchived"
 }
 
 print(requestDict)
+print(cds_dataset)
 
+#sys.exit()
 
 if os.path.exists(outfile)==False:
     print (outfile, "does not exist. Downloading...")
