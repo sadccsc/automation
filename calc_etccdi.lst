@@ -1,0 +1,65 @@
+##########################################################################
+# list of indices to be calculated using calc_etccdi.sh
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# July 2024
+#
+##########################################################################
+#
+# each line have to have entries in the following sequence: dataset,datatype,domain,basetime,index,indextype,climfirstyear,climlastyear,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ored
+#
+# allowed terms: 
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05-merged ERA5
+# datatype: observed or reanalysis, depending on the dataset
+# domain: sadc sey com mau
+# variable: name of the variable for which data are available at daily time scale, pr for rainfall, tasmin tasmax for temperature
+# basetime: mon seas year pent dek
+# index: PRCPTOT Rx1day Rx5day etc
+# indextype: clim 
+# climfirstyear and climlastyear are what the are. currently 1991 2020 is used as per WMO recommendations
+# fraction_missing - what fraction of data series is allowed to be missing in order for the index to be calculated
+# ovwerwrite: 0,1
+#
+
+#
+# not all combinations of dataset and domain are possible, as not all datasets cover all domains, and not all datasets have appropriate resolution for small domains
+# sadc: all
+# sey,com,mau: CHIRPS-v2.0-p05
+# 
+
+ERA5,reanalysis,sadc,tasmin,seas,TN,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,seas,TN,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,seas,TNn,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TX,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TX,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TXx,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,seas,TG,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmin,mon,TN,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,mon,TN,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,mon,TX,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,mon,TX,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,mon,TNn,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,mon,TXx,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,mon,TG,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmin,dek,TN,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,dek,TN,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,dek,TX,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,dek,TX,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,dek,TNn,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,dek,TXx,index,1991,2020,0,0
+
+ERA5,reanalysis,sadc,tasmin,pent,TN,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,pent,TN,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,pent,TX,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,pent,TX,absanom,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmin,pent,TNn,index,1991,2020,0,0
+ERA5,reanalysis,sadc,tasmax,pent,TXx,index,1991,2020,0,0
+
+

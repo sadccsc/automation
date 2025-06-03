@@ -1,0 +1,31 @@
+##########################################################################
+# list of indices to be calculated using calc_onset.sh
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# July 2024
+#
+##########################################################################
+#
+# each line have to have entries in the following sequence: 
+# dataset,datatype,domain,variable,basetime,index,indextype,climatologyfirstyear,climatologylastyear,percentmissing,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ignored
+# 
+# allowed terms:
+# variable: pr - this has to be name of the variable in daily data 
+# dataset: CHIRPS-v2.0-p05-merged - this has to be rainfall dataset
+# onset for other datasets - ARC and TAMSAT cannot be calculated because the calc_onset.py script cannot handle missing data at the moment and these datasets contain missing data. the python script need to be updated.
+# domain: sadc sey com mau
+# basetime: seas mon dek pent 
+# index: onsetA onsetB onsetC onsetD - these are implemeted in calc_onset.py. See that file for definitions of these onsets.
+# indextype: index, absanom
+# firstclimyear,lastclimyear - these are what the name says
+# fracmissing: 0
+# overwrite: 0 or 1
+#
+
+CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,onsetD,index,1991,2020,0,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,pr,mon,onsetD,absanom,1991,2020,0,0

@@ -1,0 +1,38 @@
+##########################################################################
+# list of indices to be calculated using calc_drought.sh
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# July 2024
+#
+##########################################################################
+#
+# each line have to have entries in the following sequence: dataset,datatype,domain,basetime,index,indextype,climfirstyear,climlastyear,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ignored
+#
+
+# each line have to have entries in the following sequence: 
+# dataset,datatype,domain,variable,basetime,index,indextime,indextype,climatologyfirstyear,climatologylastyear,percentmissing,overwrite
+# 
+# drought indices are calculated on monthly data, thus basetime will always be mon, and variable will be PRCPTOT (as this variable is calculated from daily data)
+# allowed terms:
+# variable: PRCPTOT 
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05 - these have to be rainfall datasets, for which monthly total is calculated
+# domain: sadc sey com mau
+# basetime: mon 
+# index: SPI
+# indextime: 1,3,6,12,36 - in fact any reasonable value should work...
+# indextype: index - this simply calculates SPI. potentially duration or severity can be derived for different levels of SPI, but that would need to be implemented in the calc_drought.py first 
+# fracmissing: 0
+# overwrite: 0 or 1
+#
+
+#CHIRPS-v2.0-p05-merged,observed,sadc,PRCPTOT,mon,spei,1,indexall,1991,2010,0,0,ERA5,reanalysis,TG
+#CHIRPS-v2.0-p05-merged,observed,sadc,PRCPTOT,mon,spei,3,indexall,1991,2010,0,0,ERA5,reanalysis,TG
+#CHIRPS-v2.0-p05-merged,observed,sadc,PRCPTOT,mon,spei,6,indexall,1991,2010,0,0,ERA5,reanalysis,TG
+#CHIRPS-v2.0-p05-merged,observed,sadc,PRCPTOT,mon,spei,12,indexall,1991,2010,0,0,ERA5,reanalysis,TG
+CHIRPS-v2.0-p05-merged,observed,sadc,PRCPTOT,mon,spei,36,indexall,1991,2010,0,0,ERA5,reanalysis,TG
+

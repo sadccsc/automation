@@ -40,11 +40,11 @@ for item in ${parameters[@]}; do
     domain=${item[2]} #sadc
     var=${item[3]} #PRCPTOT
     basetime=${item[4]} #mon
-    coarsen=${item[5]} #SPI
+    coarsen=${item[5]} #e.g. 5
 
     indir=$rootdir/data/$datatype/$dataset/$basetime/$domain/$var
     outputdir=./data/essential/
-
+   
     python compile_essential.py $indir $outputdir $datatype $dataset $domain $var $basetime $coarsen
 done
 

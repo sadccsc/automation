@@ -318,7 +318,8 @@ if attribute[-4:]=="anom":
             sys.exit()
         output=output.to_dataset(name=index)
         write_output()
-
+    else:
+        print("only anomalies at monthly basetime implemented at the moment. sorry.")
 
 ###############################################
 #

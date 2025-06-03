@@ -107,7 +107,6 @@ def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
             lastmonth=month
         else:
             if month>=11:
-                print(year)
                 yearexpr="{}-{}".format(year,int(year)+1)
                 year=int(year)+1
                 lastmonth=month-11+1
@@ -115,13 +114,12 @@ def get_timeexpr(year,month,day,basetime,flimy,lclimy,attr,var,varcat):
                 yearexpr=str(year)
                 lastmonth=month+2
         timeexpr="{} {}".format(seasons[month-1],yearexpr)
-        print(lastmonth)
-        #lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        lastday=(pd.DatetimeIndex([str(year)+str(lastmonth).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
         #month=lastmonth
 
     if basetime=="mon":
         timeexpr="{} {}".format(months[month-1],year)
-        #lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
+        lastday=(pd.DatetimeIndex([str(year)+str(month).zfill(2)+str(day).zfill(2)])+pd.offsets.MonthEnd())[0].day
 
     if basetime=="dek":
         if day==21:

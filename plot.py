@@ -744,12 +744,16 @@ for day,datafile in datafiles:
                 extend="both"
 
             if varcat=="heat wave":
-                print(varcat)
                 vmin=3
                 mx=np.nanmax(data)
-                print("hw",mx, np.nanmin(data), np.mean(data))
 
-                if mx>30:
+                if mx>48:
+                    vmax=48
+                    ncat=10
+                elif mx>39:
+                    vmax=39
+                    ncat=10
+                elif mx>30:
                     vmax=30
                     ncat=10
                 elif mx>20:

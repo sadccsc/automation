@@ -1,0 +1,48 @@
+##########################################################################
+# list of indices to be plotted using plot.sh
+# this file is intended to be used in the operational mode, i.e. these data
+# will be processed on regular basis
+# 
+# P.Wolski wolski@csag.uct.ac.za
+#
+# July 2024
+#
+##########################################################################
+#
+# each line have to have entries in the following sequence: dataset,datatype,domain,basetime,index,indextype,climfirstyear,climlastyear,overwrite
+# there must be no spaces
+# lines commented with # and empty lines will ored
+#
+# allowed terms: 
+# dataset: ARC2 TAMSAT-v3.1 CHIRPS-v2.0-p05-merged ERA5
+# datatype: observed or reanalysis, depending on the dataset
+# domain: sadc sey com mau
+# variable: name of the variable for which data are available at daily time scale, pr for rainfall, tasmin tasmax for temperature
+# basetime: mon mon year pent dek
+# index: PRCPTOT Rx1day Rx5day etc
+# indextype: index,absanom,percanom - depending on the index that is to be plotted 
+# climfirstyear and climlastyear are what the are. currently 1991 2020 is used as per WMO recommendations
+# fraction_missing - what fraction of data series is allowed to be missing in order for the index to be calculated
+# ovwerwrite: 0,1
+#
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,CWD,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,CDD,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,R1mm,index,1991,2020,0
+CHIRPS-v2.0-p05-merged,observed,sadc,seas,PRCPTOT,clim,1991,2020,1
+CHIRPS-v2.0-p05-merged,observed,sadc,mon,PRCPTOT,clim,1991,2020,1
+CHIRPS-v2.0-p05-merged,observed,sadc,dek,PRCPTOT,clim,1991,2020,1
+CHIRPS-v2.0-p05-merged,observed,sadc,pent,PRCPTOT,clim,1991,2020,1
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,PRCPTOT,percnormanom,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,seasaccum,percnormanom,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,Rx1day,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,Rx5day,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,SDII,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,R10mm,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,R20mm,index,1991,2020,0
+
+
+#CHIRPS-v2.0-p05-merged,observed,sadc,pent,PRCPTOT,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,dek,PRCPTOT,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,spei3,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,monaccum,index,1991,2020,0
+#CHIRPS-v2.0-p05-merged,observed,sadc,mon,monaccum,percnormanom,1991,2020,0
